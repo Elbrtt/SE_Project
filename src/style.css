@@ -10,12 +10,42 @@ body{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to bottom,rgb(6, 101, 156),rgb(3, 40, 61));
+    background: linear-gradient(to bottom,rgb(2, 63, 71),rgb(0, 0, 0));
 }
 
 .top-bar{
     display: flex;
-    height: 1.5%;
+    padding: 0.3rem;
     width: 100%;
-    background-color: rgb(7, 78, 119);
+    background-color: rgb(30, 31, 30);
+    justify-content: end;
+    gap: 0.1rem;
+    -webkit-app-region: drag;
+}
+
+.min-button{
+    color: azure;
+    background-color: rgb(30, 31, 30);
+    -webkit-app-region: no-drag;   
+}
+
+.win-button{
+    color: azure;
+    background-color: rgb(30, 31, 30);
+    -webkit-app-region: no-drag;   
+}
+
+.exit-button{
+    color: azure;
+    background-color: rgb(30, 31, 30);
+    -webkit-app-region: no-drag;   
+}
+
+.nav-bar{
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    padding: 0.2rem;
+    flex-direction: row;
+    border-style: solid;
 }
