@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom,rgb(6, 101, 156),rgb(3, 40, 61));
+}
+
+.top-bar{
+    display: flex;
+    height: 1.5%;
+    width: 100%;
+    background-color: rgb(7, 78, 119);
+}
