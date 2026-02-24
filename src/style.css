@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 
@@ -11,6 +13,7 @@ body{
     display: flex;
     flex-direction: column;
     background: linear-gradient(to bottom,rgb(2, 63, 71),rgb(0, 0, 0));
+    align-items: center;
 }
 
 .top-bar{
@@ -42,10 +45,40 @@ body{
 }
 
 .nav-bar{
+    justify-content: center;
     display: flex;
     gap: 1rem;
-    width: 100%;
-    padding: 0.2rem;
+    width: 90%;
+
+    padding: 0.5rem;
+    margin-top: 0.5rem;
     flex-direction: row;
+    background: linear-gradient(to right,rgb(2, 31, 36),rgba(1, 41, 46, 0.397));
+
     border-style: solid;
+    border-radius: 1rem;
+    border-width: 1px;
+    border-color: black;
+    
+}
+
+.library{
+    background-color: transparent;
+    border: none;
+    font-size: 1.4rem;
+    color: rgb(255, 255, 255);
+}
+
+.home{
+    background-color: transparent;
+    border: none;
+    font-size: 1.4rem;
+    color: rgb(255, 255, 255);
+}
+
+.friends{
+    background-color: transparent;
+    border: none;
+    font-size: 1.4rem;
+    color: rgb(255, 255, 255);
 }
