@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Inconsolata:wght@200..900&display=swap");
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Google Sans Flex", sans-serif;
 }
 
 
@@ -13,7 +13,6 @@ body{
     display: flex;
     flex-direction: column;
     background: linear-gradient(to bottom,rgb(2, 63, 71),rgb(0, 0, 0));
-    align-items: center;
 }
 
 .top-bar{
@@ -45,40 +44,76 @@ body{
 }
 
 .nav-bar{
-    justify-content: center;
     display: flex;
     gap: 1rem;
-    width: 90%;
-
+    width: 15%;
+    height: 95.5vh;
     padding: 0.5rem;
-    margin-top: 0.5rem;
-    flex-direction: row;
-    background: linear-gradient(to right,rgb(2, 31, 36),rgba(1, 41, 46, 0.397));
+    flex-direction: column;
+    /* background: linear-gradient(to right,rgb(2, 31, 36),rgba(1, 41, 46, 0.397)); */
+    background-color: rgba(1, 19, 20, 0.938);
 
-    border-style: solid;
-    border-radius: 1rem;
-    border-width: 1px;
     border-color: black;
+    border-radius: 0.5rem;
     
+}
+
+.nav-top{
+    height: 50%;
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 0.2rem;
+    gap: 0.75rem;
+}
+
+.nav-logo{
+    color: white;
+    font-size: 1.2rem;
+    align-items: flex-end;
+    display: flex;
+    gap: 0.3rem;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.discover{
+    background-color: transparent;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
 }
 
 .library{
     background-color: transparent;
     border: none;
-    font-size: 1.4rem;
     color: rgb(255, 255, 255);
-}
-
-.home{
-    background-color: transparent;
-    border: none;
-    font-size: 1.4rem;
-    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
 }
 
 .friends{
     background-color: transparent;
     border: none;
-    font-size: 1.4rem;
     color: rgb(255, 255, 255);
+    font-size: 1rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.nav-bott{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.friends:hover,.library:hover,.discover:hover{
+    color: aqua;
 }
