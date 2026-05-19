@@ -17,30 +17,35 @@ body{
 
 .top-bar{
     display: flex;
-    padding: 0.3rem;
     width: 100%;
     background-color: rgb(30, 31, 30);
     justify-content: end;
     gap: 0.1rem;
     -webkit-app-region: drag;
+    gap: 0.3rem;
 }
 
-.min-button{
+.min-button,.win-button,.exit-button{
+    padding: 0.3rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    border-style: none;
     color: azure;
     background-color: rgb(30, 31, 30);
     -webkit-app-region: no-drag;   
 }
 
-.win-button{
-    color: azure;
-    background-color: rgb(30, 31, 30);
-    -webkit-app-region: no-drag;   
+.min-img,.win-img,.exit-img{
+    width: 12px;
+    height: 12px;
 }
 
-.exit-button{
-    color: azure;
-    background-color: rgb(30, 31, 30);
-    -webkit-app-region: no-drag;   
+.min-button:hover,.win-button:hover{
+    background-color: rgba(156, 156, 156, 0.151);
+}
+
+.exit-button:hover{
+    background-color: red;
 }
 
 .nav-bar{
@@ -78,7 +83,7 @@ body{
     margin-bottom: 0.5rem;
 }
 
-.discover{
+.discover,.library,.friends{
     background-color: transparent;
     border: none;
     color: rgb(255, 255, 255);
@@ -86,26 +91,8 @@ body{
     display: flex;
     align-items: flex-end;
     gap: 0.5rem;
-}
-
-.library{
-    background-color: transparent;
-    border: none;
-    color: rgb(255, 255, 255);
-    font-size: 1rem;
-    display: flex;
-    align-items: flex-end;
-    gap: 0.5rem;
-}
-
-.friends{
-    background-color: transparent;
-    border: none;
-    color: rgb(255, 255, 255);
-    font-size: 1rem;
-    display: flex;
-    align-items: flex-end;
-    gap: 0.5rem;
+    border-radius: 0.3rem;
+    width: 100%;
 }
 
 .nav-bott{
@@ -115,5 +102,6 @@ body{
 }
 
 .friends:hover,.library:hover,.discover:hover{
-    color: aqua;
+    color: rgb(202, 202, 202);
+    background-color: rgba(219, 219, 219, 0.171);
 }
