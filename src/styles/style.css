@@ -1,0 +1,492 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Inconsolata:wght@200..900&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Google Sans Flex", sans-serif;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, rgb(2, 63, 71), rgb(0, 0, 0));
+    overflow: hidden; /* Mencegah double scrollbar pada body */
+}
+
+.top-bar {
+    display: flex;
+    width: 100%;
+    background-color: rgb(30, 31, 30);
+    justify-content: end;
+    -webkit-app-region: drag;
+    gap: 0.3rem;
+}
+
+.min-button, .win-button, .exit-button {
+    padding: 0.3rem 0.7rem;
+    border-style: none;
+    color: azure;
+    background-color: rgb(30, 31, 30);
+    -webkit-app-region: no-drag;   
+}
+
+.min-img, .win-img, .exit-img {
+    width: 12px;
+    height: 12px;
+}
+
+.min-button:hover, .win-button:hover {
+    background-color: rgba(156, 156, 156, 0.151);
+}
+
+.exit-button:hover {
+    background-color: red;
+}
+
+/* KELAS BARU UNTUK MENGATUR TATA LETAK UTAMA */
+.app-body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: calc(100vh - 25px); /* Menyesuaikan sisa tinggi setelah dipotong top-bar */
+}
+
+.nav-bar {
+    width: 15%;
+    height: 100%;
+    background: linear-gradient(rgb(2, 63, 71), rgb(0, 0, 0));
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(0, 212, 255, 0.2);
+    transition: width 0.3s ease;
+    position: relative;
+    padding-top: 4rem; /* Memberikan ruang aman untuk tombol hamburger di atas */
+}
+
+.nav-bar.collapsed {
+    width: 60px;
+    padding-top: 4rem;
+}
+
+/* TOMBOL HAMBURGER LEBIH RAPI DI DALAM NAV */
+.nav-collapse-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem; /* Posisi rapi di dalam garis navbar */
+    background-color: transparent;
+    border: none;
+    color: #00d4ff;
+    width: 35px;
+    height: 35px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.nav-collapse-btn:hover {
+    background-color: rgba(0, 212, 255, 0.15);
+    color: #fff;
+}
+
+/* Saat navbar mengecil, posisi hamburger otomatis ke tengah */
+.nav-bar.collapsed .nav-collapse-btn {
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.nav-top {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 0.2rem;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.nav-logo {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Sembunyikan kontainer logo saat mengecil agar tidak menumpuk dengan hamburger */
+.nav-bar.collapsed .nav-logo {
+    display: none;
+}
+
+.nav-logo-text {
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+    color: white;
+}
+
+.discover, .library, .friends {
+    width: 100%;
+    padding: 1rem;
+    background-color: transparent;
+    border: none;
+    color: rgb(202, 202, 202);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.nav-bar.collapsed .discover,
+.nav-bar.collapsed .library,
+.nav-bar.collapsed .friends {
+    justify-content: center;
+    padding: 1rem 0;
+    width: 100%;
+}
+
+.nav-btn-text {
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+}
+
+.nav-bar.collapsed .nav-btn-text {
+    display: none;
+}
+
+.nav-bott {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.friends:hover, .library:hover, .discover:hover {
+    color: rgb(202, 202, 202);
+    background-color: rgba(219, 219, 219, 0.171);
+}
+
+.nav-btn {
+    position: relative;
+}
+
+.nav-btn.active {
+    color: #00d4ff;
+    background-color: rgba(0, 212, 255, 0.151);
+}
+
+/* AREA UTAMA DENGAN SCROLLBAR KUSTOM */
+.main-content {
+    width: 85%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 2rem;
+    background: linear-gradient(to bottom, rgba(2, 63, 71, 0.3), rgba(0, 0, 0, 0.8));
+    transition: width 0.3s ease;
+}
+
+/* =========================================
+   KUSTOMISASI SCROLLBAR MODERN (CYAN GLOW)
+   ========================================= */
+.main-content::-webkit-scrollbar {
+    width: 8px; /* Ukuran scrollbar tipis elegan */
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 212, 255, 0.25); /* Warna dasar cyan transparan */
+    border-radius: 10px;
+    border: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 212, 255, 0.6); /* Lebih menyala saat diarahkan mouse */
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.nav-bar.collapsed ~ .main-content {
+    width: calc(100% - 60px);
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* ===== FEATURED SECTION ===== */
+.featured-section {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 100, 150, 0.1));
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    height: 350px;
+}
+
+.featured-image {
+    width: 60%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.featured-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.featured-info {
+    width: 40%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    color: white;
+}
+
+.featured-info h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.featured-info p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.featured-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.4rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #00d4ff;
+    color: #000;
+}
+
+.btn-primary:hover {
+    background-color: #00e6ff;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid #00d4ff;
+    color: #00d4ff;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(0, 212, 255, 0.2);
+}
+
+.btn.danger {
+    background-color: #ff4444;
+    color: white;
+}
+
+.btn.danger:hover {
+    background-color: #ff2222;
+}
+
+/* ===== RECOMMENDED SECTION ===== */
+.recommended-section {
+    margin-bottom: 3rem;
+}
+
+.recommended-section h2 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+
+.game-card {
+    background: rgba(20, 50, 60, 0.8);
+    border-radius: 0.6rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    position: relative;
+}
+
+.game-card:hover {
+    transform: translateY(-8px);
+    border-color: #00d4ff;
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+}
+
+.game-card-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.game-card-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.game-card-info {
+    padding: 1rem;
+    color: white;
+}
+
+.game-card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.game-card-category {
+    font-size: 0.75rem;
+    color: #00d4ff;
+}
+
+.game-card-owned {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #00d4ff;
+    color: #000;
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.3rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.game-card-action {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.8rem;
+    background-color: rgba(0, 212, 255, 0.2);
+    border: 1px solid #00d4ff;
+    color: #00d4ff;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.game-card-action:hover {
+    background-color: #00d4ff;
+    color: #000;
+}
+
+/* ===== LIBRARY PAGE ===== */
+.library-content {
+    max-width: 1200px;
+}
+
+.library-content h1 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.owned-games {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 2rem;
+}
+
+.library-game-card {
+    background: rgba(20, 50, 60, 0.8);
+    border-radius: 0.8rem;
+    overflow: hidden;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.library-game-card:hover {
+    border-color: #00d4ff;
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+}
+
+.library-game-image {
+    width: 100%;
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+}
+
+.library-game-info {
+    padding: 1rem;
+    color: white;
+}
+
+.library-game-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.library-game-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.library-game-actions .btn {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.empty-library {
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.1rem;
+}
+
+.empty-library.hidden {
+    display: none;
+}
