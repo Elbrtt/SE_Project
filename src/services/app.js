@@ -4,49 +4,49 @@ const games = [
         id: 'game-1',
         title: 'Mystic Legends',
         category: 'Fantasy RPG',
-        image: 'assets/games/dishonored.jpg'
+        image: '../assets/games/dishonored.jpg'
     },
     {
         id: 'game-2',
         title: 'Void Runner',
         category: 'Sci-Fi Shooter',
-        image: 'assets/games/ds.jpeg'
+        image: '../assets/games/ds.jpeg'
     },
     {
         id: 'game-3',
         title: 'Dark Souls Echo',
         category: 'Action RPG',
-        image: 'assets/games/dishonored.jpg'
+        image: '../assets/games/dishonored.jpg'
     },
     {
         id: 'game-4',
         title: 'Neon Drift',
         category: 'Racing',
-        image: 'assets/games/gow.jpeg'
+        image: '../assets/games/gow.jpeg'
     },
     {
         id: 'game-5',
         title: 'Whispers Unknown',
         category: 'Horror',
-        image: 'assets/game-5.jpg'
+        image: '../assets/game-5.jpg'
     },
     {
         id: 'game-6',
         title: 'Arcane Realms',
         category: 'Fantasy Adventure',
-        image: 'assets/game-6.jpg'
+        image: '../assets/game-6.jpg'
     },
     {
         id: 'game-7',
         title: 'Command Center',
         category: 'Strategy',
-        image: 'assets/game-7.jpg'
+        image: '../assets/game-7.jpg'
     },
     {
         id: 'game-8',
         title: 'Jungle Quest',
         category: 'Platformer',
-        image: 'assets/game-8.jpg'
+        image: '../assets/game-8.jpg'
     }
 ];
 
@@ -163,7 +163,7 @@ function renderLibraryGames() {
         const gameData = games.find(g => g.id === ownedGame.id) || {
             id: 'featured-1',
             title: 'Cyber Nexus',
-            image: 'assets/featured-game.jpg'
+            image: '../assets/featured-game.jpg'
         };
 
         return `
@@ -292,25 +292,28 @@ function setupEventListeners() {
         navbar.classList.toggle('collapsed');
     });
     
-    // Window controls dengan try-catch aman
+    // Window controls menggunakan bridge dari preload.js
     document.querySelector('.min-button').addEventListener('click', () => {
-        try {
-            const { ipcRenderer } = require('electron');
-            ipcRenderer.send('window-min');
-        } catch(e) { console.log("Minimize triggered (Electron context missing)"); }
+        if (window.electron && window.electron.windowControls) {
+            window.electron.windowControls.minimize();
+        } else {
+            console.log("Minimize triggered (Electron context missing)");
+        }
     });
     
     document.querySelector('.win-button').addEventListener('click', () => {
-        try {
-            const { ipcRenderer } = require('electron');
-            ipcRenderer.send('window-max');
-        } catch(e) { console.log("Maximize triggered (Electron context missing)"); }
+        if (window.electron && window.electron.windowControls) {
+            window.electron.windowControls.maximize();
+        } else {
+            console.log("Maximize triggered (Electron context missing)");
+        }
     });
     
     document.querySelector('.exit-button').addEventListener('click', () => {
-        try {
-            const { ipcRenderer } = require('electron');
-            ipcRenderer.send('window-close');
-        } catch(e) { console.log("Close triggered (Electron context missing)"); }
+        if (window.electron && window.electron.windowControls) {
+            window.electron.windowControls.close();
+        } else {
+            console.log("Close triggered (Electron context missing)");
+        }
     });
 }

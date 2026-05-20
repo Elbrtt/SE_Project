@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
 require('electron-reload')(path.join(__dirname, '..'));
@@ -10,11 +10,23 @@ function createWindow() {
     height: 720,
     frame: false,
     webPreferences: {
-      contextIsolation: true
+      contextIsolation: true,
+      preload: path.join(__dirname, 'preload.js')
     }
   })
 
-  win.loadFile(path.join(__dirname, 'src/index2.html'))
+  win.loadFile(path.join(__dirname, 'src/pages/index.html'))
+
+  // Handle window controls
+  ipcMain.on('window-min', () => win.minimize())
+  ipcMain.on('window-max', () => {
+    if (win.isMaximized()) {
+      win.unmaximize()
+    } else {
+      win.maximize()
+    }
+  })
+  ipcMain.on('window-close', () => win.close())
 }
 
 app.whenReady().then(() => {
