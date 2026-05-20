@@ -4,7 +4,7 @@
     display: flex;
     gap: var(--sys-spacing-xl);
     margin-bottom: var(--sys-spacing-xl);
-    background: linear-gradient(135deg, var(--sys-color-accent-alpha-10), rgba(88, 101, 242, 0.05));
+    background: linear-gradient(135deg, var(--sys-color-accent-alpha-10), var(--sys-color-accent-alpha-05, rgba(88, 101, 242, 0.05)));
     border-radius: var(--sys-radius-card);
     overflow: hidden;
     border: 1px solid var(--sys-color-border-soft);
@@ -35,7 +35,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(90deg, transparent 0%, rgba(15, 23, 42, 0.8) 100%);
+    background: linear-gradient(90deg, transparent 0%, var(--sys-color-overlay-high) 100%);
 }
 
 .featured-info {

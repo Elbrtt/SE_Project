@@ -23,6 +23,14 @@
     --ref-color-status-danger: #F85149;
     --ref-color-status-info: #58A6FF;
     
+    /* Colors - Game Specific (Deal/Download) */
+    --ref-color-deal-green: #a4d007;
+    --ref-color-deal-green-hover: #bbf00e;
+    --ref-color-deal-green-dark: #536904;
+    --ref-color-deal-green-darker: #6d8a05;
+    --ref-color-steam-blue: #67c1f5;
+    --ref-color-steam-blue-dark: #417a9b;
+    
     /* Colors - Text */
     --ref-color-text-100: #F8FAFC;
     --ref-color-text-200: #94A3B8;
@@ -97,6 +105,21 @@
     --sys-color-danger: var(--ref-color-status-danger);
     --sys-color-danger-alpha-10: rgba(248, 81, 73, 0.1);
     --sys-color-info: var(--ref-color-status-info);
+
+    /* Game Specific Status */
+    --sys-color-deal: var(--ref-color-deal-green);
+    --sys-color-deal-hover: var(--ref-color-deal-green-hover);
+    --sys-color-deal-dark: var(--ref-color-deal-green-dark);
+    --sys-color-deal-dark-hover: var(--ref-color-deal-green-darker);
+    --sys-color-download: var(--ref-color-steam-blue);
+    --sys-color-download-dark: var(--ref-color-steam-blue-dark);
+
+    /* Overlays & Transparents */
+    --sys-color-overlay-low: rgba(0, 0, 0, 0.2);
+    --sys-color-overlay-med: rgba(0, 0, 0, 0.4);
+    --sys-color-overlay-high: rgba(0, 0, 0, 0.7);
+    --sys-color-white-alpha-10: rgba(255, 255, 255, 0.1);
+    --sys-color-white-alpha-05: rgba(255, 255, 255, 0.05);
 
     /* Spacing Scale */
     --sys-spacing-xs: var(--ref-spacing-4);

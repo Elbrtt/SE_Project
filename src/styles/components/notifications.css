@@ -7,13 +7,13 @@
     bottom: var(--sys-spacing-lg);
     right: var(--sys-spacing-lg);
     background-color: var(--sys-color-accent);
-    color: var(--color-text-dark);
+    color: var(--sys-color-bg-primary);
     padding: var(--sys-spacing-md) var(--sys-spacing-lg);
     border-radius: var(--sys-radius-button);
     font-weight: 500;
     z-index: 1000;
     pointer-events: none;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--sys-shadow-lg);
     animation: slideOutToast var(--anim-duration-standard) var(--anim-easing-standard) forwards;
 }
 

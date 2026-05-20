@@ -5,32 +5,32 @@
 .nb-input,
 .nb-dropdown {
     width: 100%;
-    padding: var(--space-2) var(--space-3);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--color-border);
+    padding: var(--sys-spacing-sm) var(--sys-spacing-md);
+    background: var(--sys-color-white-alpha-05);
+    border: 1px solid var(--sys-color-border-soft);
     border-radius: var(--sys-radius-button);
-    color: var(--color-text-primary);
+    color: var(--sys-color-text-primary);
     outline: none;
     transition: all var(--anim-duration-snappy) var(--anim-easing-standard);
-    font-family: var(--font-main);
+    font-family: var(--ref-font-family-primary);
     font-size: 0.95rem;
 }
 
 .nb-input:hover,
 .nb-dropdown:hover {
-    border-color: var(--ref-color-neutral-40);
+    border-color: var(--sys-color-border-primary);
 }
 
 .nb-input:focus,
 .nb-dropdown:focus {
-    border-color: var(--color-accent);
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 0 2px var(--color-accent-alpha-20);
+    border-color: var(--sys-color-accent);
+    background: var(--sys-color-bg-alpha-high);
+    box-shadow: 0 0 0 2px var(--sys-color-accent-alpha-20);
 }
 
 .nb-dropdown {
     appearance: none;
-    background-color: var(--color-bg-card);
+    background-color: var(--sys-color-bg-secondary);
     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2394A3B8%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: right 0.7rem top 50%;
@@ -40,7 +40,7 @@
 }
 
 .nb-input::placeholder {
-    color: var(--color-text-muted);
+    color: var(--sys-color-text-secondary);
     opacity: 0.6;
 }
 

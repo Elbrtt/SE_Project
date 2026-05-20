@@ -14,14 +14,8 @@
 
 .owned-games {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: var(--ref-spacing-32);
-}
-
-.library-game-actions {
-    display: flex;
-    gap: var(--sys-spacing-sm);
-    width: 100%;
 }
 
 .library-game-status-container {

@@ -21,6 +21,7 @@ export function renderButton({
     const variantClasses = {
         primary: 'nb-btn-primary',
         secondary: 'nb-btn-secondary',
+        success: 'nb-btn-success',
         ghost: 'nb-btn-ghost',
         danger: 'nb-btn-danger'
     };

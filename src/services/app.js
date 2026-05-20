@@ -9,6 +9,7 @@ import {
 } from './ownedState.js';
 import { 
     renderRecommendedGames, 
+    renderRecommendedDeals,
     renderLibraryGames, 
     updateFeaturedButtonState 
 } from './gameLibraryService.js';
@@ -25,8 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function refreshDiscover() {
-    renderRecommendedGames(ownGame, renderGameDetail);
+    renderRecommendedGames();
+    renderRecommendedDeals();
     updateFeaturedButtonState();
+    if (window.lucide) window.lucide.createIcons();
 }
 
 function ownGame(gameId, gameTitle) {
@@ -283,7 +286,8 @@ function setupEventListeners() {
 
 // Expose legacy globals for components
 window.navigationService = { showPage };
-window.uiEngine = { ownGame, downloadGame, removeGame, openChat };
+window.uiEngine = { ownGame, downloadGame, removeGame, playGame, renderGameDetail, openChat };
+window.libraryEngine = window.uiEngine;
 window.notificationService = { showNotification };
 window.ownedState = { 
     isOwned: (id) => ownedGames.some(g => g.id === id),

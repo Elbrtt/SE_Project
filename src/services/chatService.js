@@ -101,10 +101,6 @@ export function sendMessage() {
     msgContainer.appendChild(msg);
     input.value = '';
     msgContainer.scrollTop = msgContainer.scrollHeight;
-
-    setTimeout(() => {
-        showNotification('Message sent!');
-    }, 200);
 }
 
 // Keep global reference for legacy components if needed for now
