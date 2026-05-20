@@ -1,0 +1,30 @@
+/* ===== TOP BAR (WINDOW CONTROLS) ===== */
+.top-bar {
+    display: flex;
+    width: 100%;
+    background-color: var(--bg-top-bar);
+    justify-content: end;
+    -webkit-app-region: drag;
+    gap: calc(var(--ref-spacing-4) * 1.2); /* 0.3rem */
+}
+
+.min-button, .win-button, .exit-button {
+    padding: calc(var(--ref-spacing-4) * 1.2) calc(var(--ref-spacing-4) * 2.8); /* 0.3rem 0.7rem */
+    border-style: none;
+    color: var(--color-top-bar-text);
+    background-color: var(--bg-top-bar);
+    -webkit-app-region: no-drag;   
+}
+
+.min-img, .win-img, .exit-img {
+    width: var(--ref-spacing-12);
+    height: var(--ref-spacing-12);
+}
+
+.min-button:hover, .win-button:hover {
+    background-color: var(--color-btn-hover-gray);
+}
+
+.exit-button:hover {
+    background-color: var(--color-btn-danger);
+}

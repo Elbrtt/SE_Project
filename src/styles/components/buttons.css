@@ -1,0 +1,253 @@
+/* =========================================================
+   BUTTON COMPONENTS
+   ========================================================= */
+
+/* Nebula Button Base */
+.nb-btn {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-btn);
+    font-weight: 500;
+    transition: all var(--anim-duration-standard) var(--anim-easing-standard);
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-main);
+}
+
+/* Nebula Button Variants */
+.nb-btn-primary {
+    background-color: var(--color-blurple);
+    color: var(--ref-color-neutral-0);
+}
+
+.nb-btn-primary:hover {
+    background-color: var(--color-blurple-hover);
+}
+
+.nb-btn-secondary {
+    background-color: var(--ref-color-neutral-10);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+
+.nb-btn-secondary:hover {
+    background-color: var(--ref-color-neutral-20);
+}
+
+.nb-btn-ghost {
+    background-color: transparent;
+    color: var(--color-text-primary);
+}
+
+.nb-btn-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nb-btn-danger {
+    background-color: var(--sys-color-danger);
+    color: var(--color-text-primary);
+}
+
+.nb-btn-danger:hover {
+    filter: brightness(1.1);
+}
+
+/* Standard Buttons */
+.btn {
+    padding: calc(var(--ref-spacing-4) * 3) var(--ref-spacing-24); /* 0.75rem 1.5rem */
+    border: none;
+    border-radius: var(--sys-radius-button);
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--anim-duration-standard) var(--anim-easing-standard);
+}
+
+.btn-primary {
+    background-color: var(--color-accent);
+    color: var(--color-text-dark);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-accent-alpha-20);
+}
+
+.btn.danger {
+    background-color: var(--color-badge-danger);
+    color: var(--color-text-primary);
+}
+
+.btn.danger:hover {
+    background-color: var(--color-badge-danger-hover);
+}
+
+/* Play Button */
+.btn-play {
+    background-color: #28a745 !important;
+    color: white !important;
+    border: none;
+}
+
+.btn-play:hover {
+    background-color: #218838 !important;
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Main Action Button */
+.main-action-btn {
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: 0.6rem;
+    text-transform: uppercase;
+}
+
+/* Buy Button */
+.buy-btn {
+    padding: var(--sys-spacing-xs) var(--sys-spacing-sm);
+    background: var(--color-accent-alpha-20);
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    border-radius: var(--sys-spacing-xs);
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/* Action Button */
+.action-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity var(--anim-duration-snappy);
+}
+
+.action-btn:hover {
+    opacity: 1;
+}
+
+/* Back Button */
+.back-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    transition: background var(--anim-duration-snappy) var(--anim-easing-standard), 
+                transform var(--anim-duration-snappy) var(--anim-easing-standard);
+    color: var(--color-accent);
+    font-weight: 600;
+    gap: var(--sys-spacing-sm);
+}
+
+.back-btn:hover {
+    background: rgba(9, 163, 194, 0.15);
+    transform: translateX(-3px);
+}
+
+/* Trash / Remove Button */
+.remove-btn-img {
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.4rem;
+    transition: background var(--anim-duration-snappy) var(--anim-easing-standard), 
+                border-color var(--anim-duration-snappy) var(--anim-easing-standard), 
+                transform var(--anim-duration-snappy) var(--anim-easing-standard), 
+                filter var(--anim-duration-snappy) var(--anim-easing-standard);
+    flex-shrink: 0;
+}
+
+.remove-btn-img img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    filter: brightness(0.55) sepia(1) hue-rotate(300deg) saturate(3);
+    transition: filter var(--anim-duration-snappy) var(--anim-easing-standard), 
+                transform var(--anim-duration-snappy) var(--anim-easing-standard);
+    display: block;
+}
+
+.remove-btn-img:hover {
+    background: rgba(189, 0, 0, 0.15);
+    border-color: rgba(189, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.remove-btn-img:hover img {
+    filter: brightness(0.9) sepia(1) hue-rotate(300deg) saturate(6);
+    transform: rotate(-8deg);
+}
+
+.remove-btn-img:active {
+    transform: scale(0.95);
+}
+
+/* Loading State for Buttons */
+.download-btn.loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+}
+
+.download-btn.loading::after {
+    content: "";
+    position: absolute;
+    width: var(--ref-spacing-16);
+    height: var(--ref-spacing-16);
+    top: 50%;
+    left: 50%;
+    margin: calc(var(--ref-spacing-8) * -1) 0 0 calc(var(--ref-spacing-8) * -1);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: var(--ref-radius-full);
+    border-top-color: var(--sys-color-text-primary);
+    animation: spin 0.8s linear infinite;
+}
+
+/* Interactive Utilities */
+.nb-hover-elevate {
+    transition: transform var(--anim-duration-standard) var(--anim-easing-standard), 
+                box-shadow var(--anim-duration-standard) var(--anim-easing-standard);
+}
+
+.nb-hover-elevate:hover {
+    transform: translateY(calc(var(--sys-spacing-xs) * -1)) scale(1.02);
+    box-shadow: 0 var(--sys-spacing-xs) var(--ref-spacing-20) rgba(0, 0, 0, 0.25);
+}
+
+.nb-focus-ring:focus-visible {
+    outline: calc(var(--ref-spacing-4) * 0.5) solid var(--color-blurple);
+    outline-offset: calc(var(--ref-spacing-4) * 0.5);
+}
+
+.nb-focus-ring:focus-visible {
+    outline: calc(var(--ref-spacing-4) * 0.5) solid var(--color-blurple);
+    outline-offset: calc(var(--ref-spacing-4) * 0.5);
+}

@@ -1,0 +1,76 @@
+/* =========================================================
+   CHAT COMPONENTS
+   ========================================================= */
+
+.chat-area {
+    flex: 1;
+    background: var(--bg-card);
+    border-radius: var(--sys-spacing-md);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    color: var(--color-text-primary);
+}
+
+.chat-header {
+    padding: var(--sys-spacing-md) var(--ref-spacing-24);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: var(--sys-spacing-md);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: var(--ref-spacing-24);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sys-spacing-md);
+}
+
+.msg {
+    max-width: 70%;
+    padding: calc(var(--ref-spacing-4) * 3.2) var(--sys-spacing-md);
+    border-radius: var(--sys-radius-button);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.msg.received {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-primary);
+}
+
+.msg.sent {
+    align-self: flex-end;
+    background: var(--color-accent);
+    color: var(--ref-color-neutral-0);
+}
+
+.chat-input-area {
+    padding: var(--sys-spacing-md) var(--ref-spacing-24);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    gap: var(--sys-spacing-md);
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: calc(var(--ref-spacing-4) * 2.8) calc(var(--ref-spacing-4) * 4.8);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border);
+    border-radius: var(--ref-spacing-32);
+    color: var(--color-text-primary);
+    outline: none;
+}
+
+.chat-input-area button {
+    background: var(--color-accent);
+    border: none;
+    padding: var(--sys-spacing-sm) calc(var(--ref-spacing-4) * 4.8);
+    border-radius: var(--ref-spacing-32);
+    font-weight: 600;
+    cursor: pointer;
+}

@@ -1,0 +1,44 @@
+/* ===== FRIENDS PAGE STYLES ===== */
+
+.friends-page {
+    height: 100%;
+}
+
+.friends-layout {
+    display: flex;
+    height: 100%;
+    gap: var(--sys-spacing-md);
+}
+
+.friends-list {
+    width: 320px;
+    background: var(--sys-color-bg-secondary);
+    border-radius: var(--sys-radius-card);
+    border: 1px solid var(--sys-color-border-primary);
+    overflow-y: auto;
+    padding: var(--sys-spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.friends-search input {
+    width: 100%;
+    padding: var(--ref-spacing-12) var(--sys-spacing-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--sys-color-border-primary);
+    border-radius: var(--ref-radius-sm);
+    color: var(--sys-color-text-primary);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color var(--anim-duration-snappy);
+}
+
+.friends-search input:focus {
+    border-color: var(--sys-color-accent);
+}
+
+.friend-actions {
+    display: flex;
+    gap: var(--sys-spacing-xs);
+}

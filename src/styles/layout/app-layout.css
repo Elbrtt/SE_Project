@@ -1,0 +1,78 @@
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, var(--bg-gradient-top), var(--bg-gradient-bottom));
+    overflow: hidden; 
+}
+
+/* ===== APPLICATION LAYOUT ===== */
+.app-body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: calc(100vh - calc(var(--ref-spacing-4) * 6.25)); /* 25px */
+    overflow: hidden; /* Prevent horizontal scroll during transitions */
+}
+
+/* ===== MAIN CONTENT AREA & SCROLLBAR ===== */
+.main-content {
+    /* Use the maximum width (viewport - collapsed sidebar width) */
+    /* Collapsed sidebar is 60px (ref-spacing-4 * 15) */
+    width: calc(100% - calc(var(--ref-spacing-4) * 15)); 
+    height: 100%;
+    overflow-y: auto;   
+    overflow-x: hidden; 
+    padding: var(--sys-spacing-xl);
+    background: linear-gradient(to bottom, var(--bg-main-content-top), var(--bg-main-content-bottom));
+    /* ONLY transition transform for GPU optimization */
+    transition: transform var(--anim-duration-standard) var(--anim-easing-standard);
+    will-change: transform;
+    
+    /* DI-FIX DI SINI SEBAGAI JANGKAR ABSOLUTE POSITIONING */
+    position: relative; 
+    
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent-alpha-25) rgba(0, 0, 0, 0.4);
+}
+
+.nav-bar.collapsed ~ .main-content {
+    /* Shift left by 180px (the distance the sidebar collapsed) */
+    /* No width change here to avoid layout reflows */
+    transform: translateX(calc(var(--ref-spacing-20) * -9)); 
+}
+
+/* Custom Scrollbar (Chrome, Electron, Edge) */
+.main-content::-webkit-scrollbar {
+    width: var(--sys-spacing-sm); 
+    display: block;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2); 
+    border-radius: var(--ref-radius-sm);
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: var(--color-accent-alpha-25); 
+    border-radius: var(--ref-radius-sm);
+    border: 1px solid var(--color-accent-alpha-15);
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(88, 101, 242, 0.6); /* Nebula Glow */
+}
+
+.main-content::-webkit-scrollbar-thumb:active {
+    background: var(--color-accent); 
+}
+
+/* ===== PAGE MANAGEMENT ===== */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}

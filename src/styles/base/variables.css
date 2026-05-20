@@ -1,0 +1,155 @@
+:root {
+    /* =========================================================
+       REFERENCE TOKENS (RAW VALUES)
+       ========================================================= */
+    
+    /* Colors - Neutrals */
+    --ref-color-neutral-0: #0F172A;
+    --ref-color-neutral-10: #1E293B;
+    --ref-color-neutral-20: #1E293B;
+    --ref-color-neutral-30: #232938;
+    --ref-color-neutral-40: #2A3140;
+    --ref-color-neutral-50: #202634;
+    
+    /* Colors - Accents (Blurple) */
+    --ref-color-accent-primary: #5865F2;
+    --ref-color-accent-hover: #4752C4;
+    --ref-color-accent-soft: #8B93FF;
+    --ref-color-accent-glow: rgba(88, 101, 242, 0.18);
+    
+    /* Colors - Status */
+    --ref-color-status-success: #3FB950;
+    --ref-color-status-warning: #D29922;
+    --ref-color-status-danger: #F85149;
+    --ref-color-status-info: #58A6FF;
+    
+    /* Colors - Text */
+    --ref-color-text-100: #F8FAFC;
+    --ref-color-text-200: #94A3B8;
+    --ref-color-text-300: #7D8590;
+    --ref-color-text-400: #5A6270;
+
+    /* Spacing (4px grid) */
+    --ref-spacing-4: 4px;
+    --ref-spacing-8: 8px;
+    --ref-spacing-12: 12px;
+    --ref-spacing-16: 16px;
+    --ref-spacing-20: 20px;
+    --ref-spacing-24: 24px;
+    --ref-spacing-32: 32px;
+    --ref-spacing-40: 40px;
+    --ref-spacing-48: 48px;
+    --ref-spacing-64: 64px;
+
+    /* Radius */
+    --ref-radius-sm: 10px;
+    --ref-radius-md: 14px;
+    --ref-radius-lg: 18px;
+    --ref-radius-full: 999px;
+
+    /* Typography */
+    --ref-font-family-primary: 'Inter', sans-serif;
+    --ref-font-family-secondary: 'Sora', sans-serif;
+    
+    /* Animation */
+    --anim-duration-snappy: 0.2s;
+    --anim-duration-standard: 0.3s;
+    --anim-easing-standard: ease-out;
+    --anim-easing-in-out: ease-in-out;
+
+    /* =========================================================
+       SYSTEM TOKENS (SEMANTIC MAPPINGS)
+       ========================================================= */
+    
+    /* Surfaces */
+    --sys-color-bg-primary: var(--ref-color-neutral-0);
+    --sys-color-bg-secondary: var(--ref-color-neutral-10);
+    --sys-color-bg-tertiary: var(--ref-color-neutral-20);
+    --sys-color-bg-elevated: var(--ref-color-neutral-30);
+    
+    /* Branding */
+    --sys-color-accent: var(--ref-color-accent-primary);
+    --sys-color-accent-hover: var(--ref-color-accent-hover);
+    --sys-color-accent-soft: var(--ref-color-accent-soft);
+    --sys-color-accent-glow: var(--ref-color-accent-glow);
+    
+    /* Text */
+    --sys-color-text-primary: var(--ref-color-text-100);
+    --sys-color-text-secondary: var(--ref-color-text-200);
+    --sys-color-text-muted: var(--ref-color-text-300);
+    --sys-color-text-disabled: var(--ref-color-text-400);
+
+    /* Borders */
+    --sys-color-border-primary: var(--ref-color-neutral-40);
+    --sys-color-border-soft: var(--ref-color-neutral-50);
+    --sys-color-border-focus: var(--ref-color-accent-primary);
+
+    /* Status */
+    --sys-color-success: var(--ref-color-status-success);
+    --sys-color-warning: var(--ref-color-status-warning);
+    --sys-color-danger: var(--ref-color-status-danger);
+    --sys-color-info: var(--ref-color-status-info);
+
+    /* Spacing Scale */
+    --sys-spacing-xs: var(--ref-spacing-4);
+    --sys-spacing-sm: var(--ref-spacing-8);
+    --sys-spacing-md: var(--ref-spacing-16);
+    --sys-spacing-lg: var(--ref-spacing-24);
+    --sys-spacing-xl: var(--ref-spacing-32);
+
+    /* Components */
+    --sys-radius-button: var(--ref-radius-sm);
+    --sys-radius-card: var(--ref-radius-md);
+    --sys-radius-modal: var(--ref-radius-lg);
+
+    /* =========================================================
+       LEGACY COMPATIBILITY (MAPS TO SYSTEM)
+       ========================================================= */
+    --color-blurple: var(--sys-color-accent);
+    --color-blurple-hover: var(--sys-color-accent-hover);
+    --color-bg-dark: var(--sys-color-bg-primary);
+    --color-bg-card: var(--sys-color-bg-secondary);
+    --color-text-main: var(--sys-color-text-primary);
+    --color-text-dim: var(--sys-color-text-secondary);
+    
+    --color-accent: var(--sys-color-accent);
+    --color-accent-hover: var(--sys-color-accent-hover);
+    --color-accent-alpha-15: rgba(88, 101, 242, 0.15);
+    --color-accent-alpha-20: rgba(88, 101, 242, 0.2);
+    --color-accent-alpha-25: rgba(88, 101, 242, 0.25);
+    --color-border: var(--sys-color-border-soft);
+    
+    --bg-gradient-top: var(--ref-color-neutral-10);
+    --bg-gradient-bottom: var(--ref-color-neutral-0);
+    --bg-main-content-top: rgba(30, 41, 59, 0.3);
+    --bg-main-content-bottom: rgba(15, 23, 42, 0.8);
+    
+    --bg-top-bar: var(--sys-color-bg-primary);
+    --color-top-bar-text: var(--sys-color-text-primary);
+    --color-btn-hover-gray: rgba(248, 250, 252, 0.1);
+    --color-btn-danger: var(--sys-color-danger);
+    
+    --bg-card: var(--sys-color-bg-secondary);
+    --color-text-primary: var(--sys-color-text-primary);
+    --color-text-muted: var(--sys-color-text-secondary);
+    --color-text-dark: #000000;
+    --color-badge-danger: var(--sys-color-danger);
+    --color-badge-danger-hover: var(--ref-color-status-danger);
+    --color-rating: #FFD700;
+
+    --radius-btn: var(--sys-radius-button);
+    --radius-card: var(--sys-radius-card);
+    
+    --space-1: var(--ref-spacing-4);
+    --space-2: var(--ref-spacing-8);
+    --space-3: var(--ref-spacing-12);
+    --space-4: var(--ref-spacing-16);
+    
+    --font-main: var(--ref-font-family-primary);
+    --font-heading: var(--ref-font-family-secondary);
+    
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-nebula: 0 var(--sys-spacing-xs) var(--ref-spacing-20) rgba(0, 0, 0, 0.25);
+}

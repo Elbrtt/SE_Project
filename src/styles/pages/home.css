@@ -1,0 +1,71 @@
+/* ===== HOME PAGE STYLES ===== */
+
+.featured-section {
+    display: flex;
+    gap: var(--sys-spacing-xl);
+    margin-bottom: var(--sys-spacing-xl);
+    background: linear-gradient(135deg, var(--sys-color-accent-glow), rgba(88, 101, 242, 0.1));
+    border-radius: var(--sys-radius-card);
+    overflow: hidden;
+    border: 1px solid var(--sys-color-border-soft);
+    height: 350px;
+}
+
+.featured-image {
+    width: 60%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.featured-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.featured-info {
+    width: 40%;
+    padding: var(--sys-spacing-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--sys-spacing-lg);
+    color: var(--sys-color-text-primary);
+}
+
+.featured-info h1 {
+    font-size: var(--ref-spacing-40);
+    margin: 0;
+}
+
+.featured-info p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--sys-color-text-secondary);
+}
+
+.featured-actions {
+    display: flex;
+    gap: var(--sys-spacing-md);
+}
+
+.recommended-section {
+    margin-bottom: var(--sys-spacing-xl);
+}
+
+.recommended-section h2 {
+    color: var(--sys-color-text-primary);
+    font-size: var(--ref-spacing-24);
+    margin-bottom: var(--sys-spacing-lg);
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--sys-spacing-lg);
+}

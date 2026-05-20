@@ -1,0 +1,45 @@
+/* ===== LIBRARY PAGE STYLES ===== */
+
+.library-content {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.library-content h1 {
+    color: var(--sys-color-text-primary);
+    font-size: var(--ref-spacing-32);
+    margin-bottom: var(--ref-spacing-32);
+}
+
+.owned-games {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--ref-spacing-32);
+}
+
+.library-game-actions {
+    display: flex;
+    gap: var(--sys-spacing-sm);
+    width: 100%;
+}
+
+.empty-library {
+    color: var(--sys-color-text-disabled);
+    text-align: center;
+    padding: var(--ref-spacing-48);
+    font-size: 1.1rem;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 80%;
+    max-width: 500px;
+    pointer-events: none;
+}
+
+.empty-library.hidden {
+    display: none;
+}

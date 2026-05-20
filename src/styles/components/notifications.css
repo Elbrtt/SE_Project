@@ -1,0 +1,33 @@
+/* =========================================================
+   NOTIFICATION COMPONENTS
+   ========================================================= */
+
+.notification-toast {
+    position: fixed;
+    bottom: var(--sys-spacing-lg);
+    right: var(--sys-spacing-lg);
+    background-color: var(--sys-color-accent);
+    color: var(--color-text-dark);
+    padding: var(--sys-spacing-md) var(--sys-spacing-lg);
+    border-radius: var(--sys-radius-button);
+    font-weight: 500;
+    z-index: 1000;
+    pointer-events: none;
+    box-shadow: var(--shadow-lg);
+    animation: slideOutToast var(--anim-duration-standard) var(--anim-easing-standard) forwards;
+}
+
+.notification-toast.show {
+    animation: slideInToast var(--anim-duration-standard) var(--anim-easing-standard) forwards;
+    pointer-events: auto;
+}
+
+@keyframes slideInToast {
+    from { transform: translateX(calc(var(--ref-spacing-40) * 10)); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutToast {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(calc(var(--ref-spacing-40) * 10)); opacity: 0; }
+}
