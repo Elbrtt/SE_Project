@@ -6,20 +6,22 @@
 :root {
     /* Warna Latar Belakang & Gradasi (Tema Gelap) */
     --bg-gradient-top: rgb(2, 63, 71);       /* Hijau kebiruan gelap atas */
+    --bg-gradient-top: rgb(7, 34, 39);       /* Hijau kebiruan gelap atas */
     --bg-gradient-bottom: rgb(0, 0, 0);       /* Hitam pekat bawah */
     --bg-main-content-top: rgba(2, 63, 71, 0.3); /* Transparansi atas konten */
     --bg-main-content-bottom: rgba(0, 0, 0, 0.8);/* Transparansi bawah konten */
     
     /* Warna Aksen Utama & Efek Glow (Neon Cyan) */
-    --color-accent: #00d4ff;                 /* Cyan Utama (Teks aktif, tombol, border) */
+    --color-accent: #09a3c2;              /* Cyan Utama (Teks aktif, tombol, border) */
     --color-accent-hover: #00e6ff;           /* Cyan saat di-hover */
     --color-accent-alpha-15: rgba(0, 212, 255, 0.15); /* Efek background transparan (15%) */
     --color-accent-alpha-20: rgba(0, 212, 255, 0.2);  /* Efek background transparan (20%) */
     --color-accent-alpha-25: rgba(0, 212, 255, 0.25); /* Warna dasar gagang scrollbar */
-    --color-border: rgba(0, 212, 255, 0.2);   /* Warna garis pembatas navbar & card */
+    --color-border: rgba(0, 212, 255, 0.2);
+    --color-border: rgba(121, 121, 121, 0.2);   /* Warna garis pembatas navbar & card */
     
     /* Warna Jendela Atas (Windows Top Bar) */
-    --bg-top-bar: rgb(30, 31, 30);           /* Background bar atas */
+    --bg-top-bar: rgb(12, 12, 12);           /* Background bar atas */
     --color-top-bar-text: azure;             /* Warna ikon kontrol jendela */
     --color-btn-hover-gray: rgba(156, 156, 156, 0.15); /* Hover tombol min/max */
     --color-btn-danger: red;                 /* Hover tombol exit */
@@ -29,7 +31,7 @@
     --color-text-muted: rgb(202, 202, 202);  /* Teks abu-abu menu / deskripsi */
     --color-text-dark: #000000;              /* Teks hitam (di dalam tombol primary) */
     --bg-card: rgba(20, 50, 60, 0.8);        /* Background card game */
-    --color-badge-danger: #ff4444;           /* Warna badge notifikasi / alert */
+    --color-badge-danger: #bd0000;           /* Warna badge notifikasi / alert */
     --color-badge-danger-hover: #ff2222;     /* Hover tombol danger */
 }
 
@@ -95,7 +97,8 @@ body {
 .nav-bar {
     width: 15%;
     height: 100%;
-    background: linear-gradient(var(--bg-gradient-top), var(--bg-gradient-bottom));
+    /* background: linear-gradient(var(--bg-gradient-top), var(--bg-gradient-bottom)); */
+    background: black;
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--color-border);

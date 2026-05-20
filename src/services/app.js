@@ -2,51 +2,51 @@
 const games = [
     {
         id: 'game-1',
-        title: 'Mystic Legends',
-        category: 'Fantasy RPG',
+        title: 'Dishonored',
+        category: 'Action Adventure',
         image: '../assets/games/dishonored.jpg'
     },
     {
         id: 'game-2',
-        title: 'Void Runner',
-        category: 'Sci-Fi Shooter',
+        title: 'Dark Souls III',
+        category: 'Fantasy RPG',
         image: '../assets/games/ds.jpeg'
     },
     {
         id: 'game-3',
-        title: 'Dark Souls Echo',
+        title: 'Baldur\'s Gate',
         category: 'Action RPG',
-        image: '../assets/games/dishonored.jpg'
+        image: '../assets/games/images/baldur_s_gate_3/header.jpg'
     },
     {
         id: 'game-4',
-        title: 'Neon Drift',
-        category: 'Racing',
+        title: 'God Of War: Ragnarok',
+        category: 'Action RPG',
         image: '../assets/games/gow.jpeg'
     },
     {
         id: 'game-5',
-        title: 'Whispers Unknown',
-        category: 'Horror',
-        image: '../assets/game-5.jpg'
+        title: 'Cyberpunk 2077',
+        category: 'RPG',
+        image: '../assets/games/images/cyberpunk_2077/header.jpg'
     },
     {
         id: 'game-6',
-        title: 'Arcane Realms',
-        category: 'Fantasy Adventure',
-        image: '../assets/game-6.jpg'
+        title: 'Elden Ring',
+        category: 'Action RPG',
+        image: '../assets/games/images/elden_ring/header.jpg'
     },
     {
         id: 'game-7',
-        title: 'Command Center',
-        category: 'Strategy',
-        image: '../assets/game-7.jpg'
+        title: 'Hades',
+        category: 'Roguelike',
+        image: '../assets/games/images/hades/library_600x900.jpg'
     },
     {
         id: 'game-8',
-        title: 'Jungle Quest',
+        title: 'Portal 2',
         category: 'Platformer',
-        image: '../assets/game-8.jpg'
+        image: '../assets/games/images/portal_2/header.jpg'
     }
 ];
 
@@ -162,8 +162,8 @@ function renderLibraryGames() {
     ownedGamesContainer.innerHTML = ownedGames.map(ownedGame => {
         const gameData = games.find(g => g.id === ownedGame.id) || {
             id: 'featured-1',
-            title: 'Cyber Nexus',
-            image: '../assets/featured-game.jpg'
+            title: 'Dota 2',
+            image: '../assets/games/images/dota_2/header.jpg'
         };
 
         return `
