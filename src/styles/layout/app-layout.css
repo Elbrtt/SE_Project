@@ -18,29 +18,16 @@ body {
 
 /* ===== MAIN CONTENT AREA & SCROLLBAR ===== */
 .main-content {
-    /* Use the maximum width (viewport - collapsed sidebar width) */
-    /* Collapsed sidebar is 60px (ref-spacing-4 * 15) */
-    width: calc(100% - calc(var(--ref-spacing-4) * 15)); 
+    flex: 1;
     height: 100%;
     overflow-y: auto;   
     overflow-x: hidden; 
     padding: var(--sys-spacing-xl);
     background: linear-gradient(to bottom, var(--bg-main-content-top), var(--bg-main-content-bottom));
-    /* ONLY transition transform for GPU optimization */
-    transition: transform var(--anim-duration-standard) var(--anim-easing-standard);
-    will-change: transform;
-    
-    /* DI-FIX DI SINI SEBAGAI JANGKAR ABSOLUTE POSITIONING */
     position: relative; 
     
     scrollbar-width: thin;
     scrollbar-color: var(--color-accent-alpha-25) rgba(0, 0, 0, 0.4);
-}
-
-.nav-bar.collapsed ~ .main-content {
-    /* Shift left by 180px (the distance the sidebar collapsed) */
-    /* No width change here to avoid layout reflows */
-    transform: translateX(calc(var(--ref-spacing-20) * -9)); 
 }
 
 /* Custom Scrollbar (Chrome, Electron, Edge) */

@@ -17,6 +17,18 @@ const friends = [
         name: 'Michael Chen',
         status: 'Offline',
         avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Michael'
+    },
+    {
+        id: 'friend-4',
+        name: 'Emma Watson',
+        status: 'Online',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Emma'
+    },
+    {
+        id: 'friend-5',
+        name: 'David Miller',
+        status: 'Away',
+        avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=David'
     }
 ];
 

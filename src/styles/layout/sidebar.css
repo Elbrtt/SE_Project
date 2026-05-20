@@ -1,20 +1,19 @@
 /* ===== SIDEBAR (NAVIGATION BAR) ===== */
 .nav-bar {
-    width: calc(var(--ref-spacing-40) * 6); /* 240px */
+    width: 240px;
     height: 100%;
     background: var(--sys-color-bg-primary);
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--sys-color-border-soft);
-    transition: transform var(--anim-duration-standard) var(--anim-easing-standard);
+    transition: width var(--anim-duration-standard) var(--anim-easing-standard);
     position: relative;
     z-index: 10;
-    will-change: transform;
 }
 
 
 .nav-bar.collapsed {
-    transform: translateX(calc(var(--ref-spacing-20) * -9)); /* -180px */
+    width: 80px;
 }
 
 .nav-bar.collapsed .nav-logo-content,
@@ -48,7 +47,6 @@
 .nav-logo img {
     width: var(--ref-spacing-24);
     height: var(--ref-spacing-24);
-    transition: transform var(--anim-duration-standard) var(--anim-easing-standard);
 }
 
 .nav-logo-text {
@@ -77,19 +75,9 @@
     background-color: var(--color-accent-alpha-15);
 }
 
-/* Adjusted elements for collapsed state via transform */
-.nav-bar.collapsed .nav-logo-content {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.nav-bar.collapsed .nav-logo img,
-.nav-bar.collapsed .nav-collapse-btn {
-    transform: translateX(calc(var(--ref-spacing-20) * 9)); /* 180px */
-}
-
+/* Collapsed state adjustments */
 .nav-bar.collapsed .nav-logo {
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 /* ===== NAVIGATION MENU LINKS ===== */
@@ -121,7 +109,6 @@
 .discover img, .library img, .friends img {
     width: var(--ref-spacing-20);
     height: var(--ref-spacing-20);
-    transition: transform var(--anim-duration-standard) var(--anim-easing-standard);
 }
 
 .friends:hover, .library:hover, .discover:hover {
@@ -153,12 +140,10 @@
     justify-content: center;
     font-size: 0.7rem;
     font-weight: bold;
-    transition: opacity var(--anim-duration-standard) var(--anim-easing-standard);
 }
 
 .nav-btn-text {
     white-space: nowrap;
-    transition: opacity var(--anim-duration-standard) var(--anim-easing-standard);
 }
 
 .nav-bott {
@@ -168,22 +153,14 @@
 }
 
 /* Collapsed state for buttons */
-.nav-bar.collapsed .nav-btn-text,
 .nav-bar.collapsed .library-badge {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.nav-bar.collapsed .discover img,
-.nav-bar.collapsed .library img,
-.nav-bar.collapsed .friends img {
-    transform: translateX(calc(var(--ref-spacing-20) * 9));
+    display: none;
 }
 
 .nav-bar.collapsed .discover,
 .nav-bar.collapsed .library,
 .nav-bar.collapsed .friends {
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .nav-bar.hidden {

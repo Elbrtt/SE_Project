@@ -2,10 +2,37 @@
  * Chat Service - Handles messaging and chat UI.
  */
 
+const dummyMessages = {
+    'friend-1': [
+        { type: 'received', text: 'Hey! Are you online?' },
+        { type: 'received', text: 'Want to play some games?' },
+        { type: 'sent', text: "Sure! Let's go." }
+    ],
+    'friend-2': [
+        { type: 'received', text: 'How is the new God of War?' },
+        { type: 'sent', text: 'Amazing! You should try it.' }
+    ],
+    'friend-3': [
+        { type: 'received', text: 'See you tomorrow!' }
+    ],
+    'friend-4': [
+        { type: 'received', text: 'Did you finish the quest?' },
+        { type: 'sent', text: 'Almost there!' }
+    ],
+    'friend-5': [
+        { type: 'received', text: 'Busy today?' }
+    ]
+};
+
 function openChat(friendId) {
     const chatArea = document.querySelector('.chat-area');
     const friend = window.friendService.getAllFriends().find(f => f.id === friendId);
     if (!friend || !chatArea) return;
+
+    const messages = dummyMessages[friendId] || [];
+    const messageHtml = messages.map(m => `
+        <div class="msg ${m.type}">${m.text}</div>
+    `).join('');
 
     chatArea.innerHTML = `
         <div class="chat-header">
@@ -26,9 +53,7 @@ function openChat(friendId) {
             </div>
         </div>
         <div class="chat-messages" id="chatMessages">
-            <div class="msg received">Hey! Are you online?</div>
-            <div class="msg received">Want to play some ${window.gameService.getAllGames()[0].title}?</div>
-            <div class="msg sent">Sure! Let's go.</div>
+            ${messageHtml}
         </div>
         <div class="chat-input-area">
             <input type="text" placeholder="Type a message..." id="chatInput" autocomplete="off">

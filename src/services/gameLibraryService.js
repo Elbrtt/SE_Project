@@ -1,169 +1,114 @@
-import { renderButton } from '../components/ui/button.js';
-import { renderCard } from '../components/ui/card.js';
-import { tooltipProps } from '../components/ui/tooltip.js';
+import { games } from './gameService.js';
+import { ownedGames } from './ownedState.js';
 
-/**
- * Game Library Service - Handles rendering lists of games.
- */
-
-function renderRecommendedGames() {
+// Render recommended games grid
+export function renderRecommendedGames(onOwnGame, onShowDetail) {
     const gamesGrid = document.getElementById('gamesGrid');
-    if (!gamesGrid) return;
-
-    const games = window.gameService.getAllGames();
-    gamesGrid.innerHTML = games.map(game => {
-        const isOwned = window.ownedState.isOwned(game.id);
-        return window.components.renderGameCard(game, isOwned);
-    }).join('');
-}
-
-function renderDeals() {
-    const dealsGrid = document.getElementById('dealsGrid');
-    if (!dealsGrid) return;
-
-    const games = window.gameService.getAllGames();
+    if (gamesGrid) {
+        gamesGrid.innerHTML = games.map(game => createGameCard(game)).join('');
+    }
     
-    // Filter for "worth it" deals: discount > 20% OR price <= 15
-    const deals = games.filter(game => {
-        if (!game.deals || game.deals.length === 0) return false;
-        return game.deals.some(deal => deal.discount > 20 || deal.price <= 15);
+    document.querySelectorAll('.game-card-action.own-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onOwnGame(btn.dataset.gameId, btn.dataset.gameTitle);
+        });
     });
 
-    dealsGrid.innerHTML = deals.map(game => {
-        // Find the best deal for this game
-        const bestDeal = game.deals.reduce((best, current) => {
-            return (current.discount > best.discount) ? current : best;
-        }, game.deals[0]);
-
-        const oldPrice = (parseFloat(bestDeal.price) / (1 - bestDeal.discount / 100)).toFixed(2);
-        
-        // Map platform to Lucide icon
-        const getPlatformIcon = (source) => {
-            switch(source.toLowerCase()) {
-                case 'steam': return 'monitor';
-                case 'epic': return 'gamepad-2';
-                case 'gog': return 'ghost';
-                default: return 'command';
+    document.querySelectorAll('.game-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const btn = card.querySelector('.own-btn');
+            if (btn) {
+                onShowDetail(btn.dataset.gameId);
             }
-        };
-
-        return renderCard({
-            title: game.title,
-            image: game.image,
-            content: `
-                <div class="deal-meta">
-                    <div class="nb-badge nb-badge-danger">-${bestDeal.discount}%</div>
-                    <div class="platform-icons">
-                        ${game.deals.map(d => `<i data-lucide="${getPlatformIcon(d.source)}" class="platform-icon" title="${d.source}"></i>`).join('')}
-                    </div>
-                </div>
-                <div class="deal-price-row">
-                    <span class="old-price">$${oldPrice}</span>
-                    <span class="new-price">$${bestDeal.price}</span>
-                </div>
-            `,
-            extraClasses: 'deal-card',
-            onClick: `window.navigationService.showPage('detail', '${game.id}')`
         });
-    }).join('');
+    });
+}
 
-    if (window.lucide) {
-        window.lucide.createIcons();
+// Create individual game card HTML
+export function createGameCard(game) {
+    const isOwned = ownedGames.some(g => g.id === game.id);
+    const ownedBadge = isOwned ? `<div class="game-card-owned">OWNED</div>` : '';
+    
+    return `
+        <div class="game-card">
+            <div class="game-card-image" style="background-image: url('${game.image}')">
+                ${ownedBadge}
+            </div>
+            <div class="game-card-info">
+                <div class="game-card-title">${game.title}</div>
+                <div class="game-card-category">${game.category}</div>
+                <button class="game-card-action own-btn" data-game-id="${game.id}" data-game-title="${game.title}">
+                    ${isOwned ? 'OWNED' : 'OWN'}
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+// Update Featured Button State
+export function updateFeaturedButtonState() {
+    const featuredBtn = document.querySelector('.featured-actions .own-btn');
+    if (featuredBtn) {
+        const isOwned = ownedGames.some(g => g.id === 'featured-1');
+        featuredBtn.textContent = isOwned ? 'OWNED' : 'Own Now';
     }
 }
 
-function renderLibraryGames() {
+// Render owned games in library
+export function renderLibraryGames(onDownload, onPlay, onRemove) {
     const ownedGamesContainer = document.getElementById('ownedGames');
     const emptyLibrary = document.getElementById('emptyLibrary');
-
+    
     if (!ownedGamesContainer) return;
-
-    const ownedGames = window.ownedState.getOwnedGames();
-
+    
     if (ownedGames.length === 0) {
         ownedGamesContainer.innerHTML = '';
         if (emptyLibrary) emptyLibrary.classList.remove('hidden');
         return;
     }
-
+    
     if (emptyLibrary) emptyLibrary.classList.add('hidden');
-
+    
     ownedGamesContainer.innerHTML = ownedGames.map(ownedGame => {
-        const gameData = window.gameService.getGameById(ownedGame.id) || {
+        const gameData = games.find(g => g.id === ownedGame.id) || {
             id: 'featured-1',
-            title: 'Cyber Nexus',
-            image: '../assets/games/cyberpunk.jpg'
+            title: 'DOTA 2',
+            image: '../assets/games/images/dota_2/header.jpg'
         };
 
-        const state = window.ownedState.getGameStatus(ownedGame.id);
-        const status = state ? state.status : 'ready';
-        const progress = state ? state.progress : 0;
+        const isInstalled = ownedGame.isInstalled || false;
+        
+        const actionButtonHTML = isInstalled 
+            ? `<button class="btn btn-play play-btn" data-game-id="${ownedGame.id}" data-game-title="${gameData.title}">Play</button>`
+            : `<button class="btn btn-primary download-btn" data-game-id="${ownedGame.id}" data-game-title="${gameData.title}">Download</button>`;
 
-        let statusText = 'Ready to Download';
-        let statusIcon = 'download-cloud';
-        let actionLabel = 'Download';
-        let actionIcon = 'download';
-        let isDownloading = status === 'downloading';
-
-        if (status === 'downloading') {
-            statusText = `Downloading... ${progress}%`;
-            statusIcon = 'loader';
-            actionLabel = 'Downloading';
-        } else if (status === 'installed') {
-            statusText = 'Ready to Play';
-            statusIcon = 'check-circle';
-            actionLabel = 'Play';
-            actionIcon = 'play';
-        }
-
-        const statusHtml = `
-            <div class="library-game-status-container">
-                <div ${tooltipProps(status === 'installed' ? 'Installed on Nebula' : 'Cloud Library', 'top')} class="library-game-status ${status}">
-                    <i data-lucide="${statusIcon}" class="status-icon ${isDownloading ? 'spin' : ''}"></i>
-                    <span>${statusText}</span>
-                </div>
-                ${isDownloading ? `
-                    <div class="nb-progress-bar">
-                        <div class="nb-progress-fill" style="width: ${progress}%"></div>
+        return `
+            <div class="library-game-card">
+                <div class="library-game-image" style="background-image: url('${gameData.image}')"></div>
+                <div class="library-game-info">
+                    <div class="library-game-title">${gameData.title}</div>
+                    <div class="library-game-actions">
+                        ${actionButtonHTML}
+                        <button class="remove-btn-img remove-btn" data-game-id="${ownedGame.id}" title="Remove Game">
+                            <img src="../assets/trash.png" alt="Remove">
+                        </button>
                     </div>
-                ` : ''}
+                </div>
             </div>
         `;
-
-        const actions = `
-            <div class="library-game-actions">
-                ${renderButton({
-                    label: actionLabel,
-                    variant: status === 'installed' ? 'secondary' : 'primary',
-                    extraClasses: `download-btn ${isDownloading ? 'disabled' : ''}`,
-                    onClick: isDownloading ? '' : `event.stopPropagation(); ${status === 'installed' ? `window.notificationService.showNotification('Launching ${gameData.title}...')` : `window.uiEngine.downloadGame('${ownedGame.id}', '${gameData.title}')`}`
-                })}
-                ${renderButton({
-                    label: 'Remove',
-                    variant: 'danger',
-                    extraClasses: 'remove-btn',
-                    onClick: `event.stopPropagation(); window.uiEngine.removeGame('${ownedGame.id}')`
-                })}
-            </div>
-        `;
-
-        return renderCard({
-            title: gameData.title,
-            content: statusHtml,
-            image: gameData.image,
-            footer: actions,
-            extraClasses: `library-game-card ${status}`,
-            onClick: `window.navigationService.showPage('detail', '${ownedGame.id}')`
-        });
     }).join('');
+    
+    document.querySelectorAll('.download-btn').forEach(btn => {
+        btn.addEventListener('click', () => onDownload(btn.dataset.gameId, btn.dataset.gameTitle));
+    });
 
-    if (window.lucide) {
-        window.lucide.createIcons();
-    }
+    document.querySelectorAll('.play-btn').forEach(btn => {
+        btn.addEventListener('click', () => onPlay(btn.dataset.gameTitle));
+    });
+    
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', () => onRemove(btn.dataset.gameId));
+    });
 }
-
-window.gameLibraryService = {
-    renderRecommendedGames,
-    renderDeals,
-    renderLibraryGames
-};

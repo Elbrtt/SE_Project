@@ -1,116 +1,59 @@
-// Game data service
-const games = [
+export const games = [
     {
         id: 'game-1',
-        title: 'Mystic Legends',
-        category: 'Fantasy RPG',
+        title: 'Dishonored',
+        category: 'Action Adventure',
         image: '../assets/games/dishonored.jpg',
-        description: 'Embark on an epic journey through mystical lands and become a legend.',
-        rating: 4.8,
-        developer: 'Arcane Studios',
-        releaseDate: '2023-10-15',
-        deals: [
-            { source: 'Steam', price: 49.99, discount: 20 },
-            { source: 'Epic', price: 59.99, discount: 0 }
-        ]
+        bg:'../assets/games/dishonored.jpg'
     },
     {
         id: 'game-2',
-        title: 'Void Runner',
-        category: 'Sci-Fi Shooter',
+        title: 'Dark Souls III',
+        category: 'Fantasy RPG',
         image: '../assets/games/ds.jpeg',
-        description: 'Fast-paced combat in the depths of space. Survive the void.',
-        rating: 4.5,
-        developer: 'Orbit Games',
-        releaseDate: '2024-01-20',
-        deals: [
-            { source: 'Steam', price: 29.99, discount: 15 },
-            { source: 'GOG', price: 25.00, discount: 10 }
-        ]
+        bg: '../assets/ds_bg.png'
+
     },
     {
         id: 'game-3',
-        title: 'Dark Souls Echo',
+        title: 'Baldur\'s Gate',
         category: 'Action RPG',
-        image: '../assets/games/dishonored.jpg',
-        description: 'Unforgiving combat and deep lore in a dying world.',
-        rating: 4.9,
-        developer: 'Echo Software',
-        releaseDate: '2022-05-12',
-        deals: [
-            { source: 'Steam', price: 39.99, discount: 50 }
-        ]
+        image: '../assets/games/images/baldur_s_gate_3/header.jpg',
+        bg: '../assets/games/images/baldur_s_gate_3/hero.jpg'
     },
     {
         id: 'game-4',
-        title: 'Neon Drift',
-        category: 'Racing',
+        title: 'God Of War: Ragnarok',
+        category: 'Action RPG',
         image: '../assets/games/gow.jpeg',
-        description: 'High-octane racing through neon-lit futuristic cityscapes.',
-        rating: 4.2,
-        developer: 'Speed Force',
-        releaseDate: '2023-08-30',
-        deals: [
-            { source: 'Steam', price: 19.99, discount: 0 },
-            { source: 'Origin', price: 14.99, discount: 25 }
-        ]
+        bg: '../assets/gow_bg.jpg'
     },
     {
         id: 'game-5',
-        title: 'Whispers Unknown',
-        category: 'Horror',
-        image: '../assets/games/ds.jpeg',
-        description: 'A psychological horror experience that will keep you guessing.',
-        rating: 4.6,
-        developer: 'Silent Hill Team',
-        releaseDate: '2024-02-14',
-        deals: [
-            { source: 'Steam', price: 34.99, discount: 10 }
-        ]
+        title: 'Cyberpunk 2077',
+        category: 'RPG',
+        image: '../assets/games/images/cyberpunk_2077/header.jpg',
+        bg:'../assets/games/images/cyberpunk_2077/hero.jpg'
     },
     {
         id: 'game-6',
-        title: 'Arcane Realms',
-        category: 'Fantasy Adventure',
-        image: '../assets/games/dishonored.jpg',
-        description: 'Explore vast open worlds filled with magic and mystery.',
-        rating: 4.7,
-        developer: 'World Builders',
-        releaseDate: '2023-12-01',
-        deals: [
-            { source: 'Steam', price: 45.00, discount: 30 }
-        ]
+        title: 'Elden Ring',
+        category: 'Action RPG',
+        image: '../assets/games/images/elden_ring/header.jpg',
+        bg: '../assets/games/images/elden_ring/hero.jpg'
     },
     {
         id: 'game-7',
-        title: 'Command Center',
-        category: 'Strategy',
-        image: '../assets/games/gow.jpeg',
-        description: 'Master the battlefield with superior tactics and strategy.',
-        rating: 4.4,
-        developer: 'Tactical Mind',
-        releaseDate: '2022-11-20',
-        deals: [
-            { source: 'Steam', price: 24.99, discount: 50 },
-            { source: 'Microsoft', price: 49.99, discount: 0 }
-        ]
+        title: 'Hades',
+        category: 'Roguelike',
+        image: '../assets/games/images/hades/library_600x900.jpg',
+        bg: '../assets/games/images/hades/hero.jpg'
     },
     {
         id: 'game-8',
-        title: 'Jungle Quest',
+        title: 'Portal 2',
         category: 'Platformer',
-        image: '../assets/games/ds.jpeg',
-        description: 'Leap through dangerous jungles in search of ancient treasure.',
-        rating: 4.0,
-        developer: 'Jump Start',
-        releaseDate: '2023-03-10',
-        deals: [
-            { source: 'Steam', price: 9.99, discount: 0 }
-        ]
+        image: '../assets/games/images/portal_2/header.jpg',
+        bg: '../assets/games/images/portal_2/hero.jpg'
     }
 ];
-
-window.gameService = {
-    getAllGames: () => games,
-    getGameById: (id) => games.find(g => g.id === id)
-};
