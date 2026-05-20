@@ -19,7 +19,14 @@
     padding: var(--sys-spacing-md);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--sys-spacing-md);
+    flex: none;
+}
+
+.friends-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sys-spacing-sm);
 }
 
 .friends-search input {
@@ -32,13 +39,9 @@
     font-size: 0.9rem;
     outline: none;
     transition: border-color var(--anim-duration-snappy);
+    margin-bottom: var(--sys-spacing-md);
 }
 
 .friends-search input:focus {
     border-color: var(--sys-color-accent);
-}
-
-.friend-actions {
-    display: flex;
-    gap: var(--sys-spacing-xs);
 }

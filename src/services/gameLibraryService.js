@@ -93,9 +93,9 @@ export function renderLibraryGames(onDownload, onPlay, onRemove) {
 
         return `
             <div class="library-game-card">
-                <div class="library-game-image" style="background-image: url('${gameData.image}')"></div>
-                <div class="library-game-info">
-                    <div class="library-game-title">${gameData.title}</div>
+                <div class="game-card-image" style="background-image: url('${gameData.image}')"></div>
+                <div class="game-card-info">
+                    <div class="game-card-title">${gameData.title}</div>
                     <div class="library-game-actions">
                         ${actionButtonHTML}
                         <button class="remove-btn-img remove-btn" data-game-id="${ownedGame.id}" title="Remove Game">
