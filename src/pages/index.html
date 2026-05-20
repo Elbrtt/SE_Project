@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Inconsolata:wght=200..900&display=swap" rel="stylesheet">
-    <title>Marketplace</title>
+    <title>Oasis</title>
 </head>
 <body>
     <div class="top-bar">
@@ -27,7 +27,7 @@
             <div class="nav-logo">
                 <div class="nav-logo-content">
                     <img src="../assets/se-logo.png" alt="">
-                    <span class="nav-logo-text">Marketplace</span>
+                    <span class="nav-logo-text">Oasis</span>
                 </div>
                 <button class="nav-collapse-btn" id="collapseBtn">☰</button>
             </div>
@@ -88,17 +88,20 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="page detail-page" id="detailPage">
-                <button class="btn btn-secondary back-btn" id="backToDiscoverBtn" style="margin-bottom: 1.5rem;">
-                    ← Back to Discover
+                <button class="back-btn" id="backToDiscoverBtn">
+                    <img src="../assets/prev.png" alt="Back" class="back-img">
                 </button>
                 <div class="detail-container">
-                    <div class="detail-header" id="detailHeaderImage"></div>
+                    <div class="detail-header" id="detailHeaderImage">
+                        <div class="detail-hero-title">
+                            <h1 id="detailTitle">Game Title</h1>
+                            <div class="detail-category-badge" id="detailCategory">Category</div>
+                        </div>
+                    </div>
                     <div class="detail-body">
                         <div class="detail-main-info">
-                            <h1 id="detailTitle">Game Title</h1>
-                            <div class="detail-category" id="detailCategory">Category</div>
                             <p class="detail-description" id="detailDescription">Game description...</p>
                         </div>
                         <div class="detail-side-panel">
