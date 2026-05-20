@@ -1,3 +1,5 @@
+import { renderButton } from './ui/button.js';
+
 /**
  * Friend Card Component
  */
@@ -14,9 +16,29 @@
         if (friend.status === 'Online') statusClass = 'online';
         if (friend.status === 'In-Game') statusClass = 'in-game';
 
-        // Using standard emojis for icons since local assets might be missing or limited
+        const chatBtn = renderButton({
+            label: '💬',
+            variant: 'ghost',
+            extraClasses: 'action-btn',
+            onClick: `window.uiEngine.openChat('${friend.id}')`
+        });
+
+        const callBtn = renderButton({
+            label: '📞',
+            variant: 'ghost',
+            extraClasses: 'action-btn',
+            onClick: `event.stopPropagation(); window.notificationService.showNotification('Calling ${friend.name}...')`
+        });
+
+        const videoBtn = renderButton({
+            label: '🎥',
+            variant: 'ghost',
+            extraClasses: 'action-btn',
+            onClick: `event.stopPropagation(); window.notificationService.showNotification('Starting video call with ${friend.name}...')`
+        });
+
         return `
-            <div class="friend-card" onclick="window.uiEngine.openChat('${friend.id}')">
+            <div class="friend-card nb-card nb-hover-elevate" onclick="window.uiEngine.openChat('${friend.id}')">
                 <div class="friend-avatar-container">
                     <img src="${friend.avatar}" alt="${friend.name}" class="friend-avatar">
                     <div class="status-dot ${statusClass}"></div>
@@ -26,9 +48,9 @@
                     <div class="friend-status">${friend.status}</div>
                 </div>
                 <div class="friend-actions">
-                    <button class="action-btn" title="Chat">💬</button>
-                    <button class="action-btn" title="Voice Call" onclick="event.stopPropagation(); showNotification('Calling ${friend.name}...')">📞</button>
-                    <button class="action-btn" title="Video Call" onclick="event.stopPropagation(); showNotification('Starting video call with ${friend.name}...')">🎥</button>
+                    ${chatBtn}
+                    ${callBtn}
+                    ${videoBtn}
                 </div>
             </div>
         `;
