@@ -19,18 +19,17 @@ export function renderInput({
     extraClasses = ''
 }) {
     const idAttr = id ? `id="${id}"` : '';
-    const labelHtml = label ? `<label ${id ? `for="${id}"` : ''} style="display: block; margin-bottom: var(--space-1); color: var(--color-text-dim); font-size: 0.85rem;">${label}</label>` : '';
+    const labelHtml = label ? `<label ${id ? `for="${id}"` : ''} class="nb-form-label">${label}</label>` : '';
 
     return `
-        <div class="nb-input-container ${extraClasses}" style="width: 100%;">
+        <div class="nb-input-container ${extraClasses}">
             ${labelHtml}
             <input 
                 ${idAttr}
                 type="${type}" 
                 placeholder="${placeholder}" 
                 value="${value}"
-                class="nb-focus-ring"
-                style="width: 100%; padding: var(--space-2) var(--space-3); background: rgba(255, 255, 255, 0.05); border: 1px solid var(--color-border); border-radius: 0.5rem; color: var(--color-text-primary); outline: none; transition: border-color 0.2s;"
+                class="nb-input nb-focus-ring"
             />
         </div>
     `.trim();

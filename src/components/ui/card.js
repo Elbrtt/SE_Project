@@ -14,10 +14,13 @@ export function renderCard({
     content, 
     image = null, 
     footer = null, 
-    extraClasses = '' 
+    extraClasses = '',
+    onClick = ''
 }) {
+    const onClickAttr = onClick ? `onclick="${onClick}"` : '';
+
     return `
-        <div class="nb-card nb-hover-elevate ${extraClasses}">
+        <div class="nb-card nb-hover-elevate ${extraClasses}" ${onClickAttr}>
             ${image ? `<div class="nb-card-image" style="background-image: url('${image}')"></div>` : ''}
             <div class="nb-card-header">
                 <h3 class="nb-card-title">${title}</h3>
