@@ -27,28 +27,76 @@ import { tooltipProps } from './ui/tooltip.js';
 
             return `
                 <div class="deal-item nb-hover-elevate">
-                    <span class="store-name">${deal.source}</span>
-                    <span class="deal-price">$${deal.price} <small>(${deal.discount}% off)</small></span>
+                    <div class="deal-store">
+                        <i data-lucide="shopping-cart"></i>
+                        <span class="store-name">${deal.source}</span>
+                    </div>
+                    <div class="deal-info">
+                        <span class="deal-price">$${deal.price}</span>
+                        <span class="deal-discount">-${deal.discount}%</span>
+                    </div>
                     ${viewBtn}
                 </div>
             `;
         }).join('');
 
         const backBtn = renderButton({
-            label: '← Back to Discover',
+            label: 'Back to Discover',
             variant: 'ghost',
+            icon: '<i data-lucide="arrow-left"></i>',
             extraClasses: 'back-btn',
             onClick: "window.navigationService.showPage('discover')"
         });
 
-        const ownBtnLabel = isOwned ? 'OWNED' : 'Own Now';
-        const ownBtnVariant = isOwned ? 'secondary' : 'primary';
-        const ownBtn = renderButton({
-            label: ownBtnLabel,
-            variant: ownBtnVariant,
-            extraClasses: `own-btn ${isOwned ? 'owned' : ''}`,
-            onClick: `window.uiEngine.ownGame('${game.id}', '${game.title}')`
-        });
+        // Hide "STATUS" and "Own Now" if owned
+        let actionBoxHtml = '';
+        if (isOwned) {
+            const state = window.ownedState.getGameStatus(game.id);
+            const status = state ? state.status : 'ready';
+            const progress = state ? state.progress : 0;
+            const isDownloading = status === 'downloading';
+            
+            let btnLabel = 'Download';
+            let btnVariant = 'primary';
+            if (status === 'downloading') btnLabel = `Downloading ${progress}%`;
+            else if (status === 'installed') {
+                btnLabel = 'Play Now';
+                btnVariant = 'secondary';
+            }
+
+            actionBoxHtml = `
+                <div class="status-box nb-card owned">
+                    <div class="status-info-row">
+                        <i data-lucide="${status === 'installed' ? 'check-circle' : 'library'}" class="icon-owned"></i>
+                        <div class="status-content">
+                            <span class="status-label">STATUS</span>
+                            <span class="status-value">${status.toUpperCase()}</span>
+                        </div>
+                    </div>
+                    ${renderButton({
+                        label: btnLabel,
+                        variant: btnVariant,
+                        extraClasses: `own-btn ${isDownloading ? 'disabled' : ''}`,
+                        onClick: isDownloading ? '' : `${status === 'installed' ? `window.notificationService.showNotification('Launching ${game.title}...')` : `window.uiEngine.downloadGame('${game.id}', '${game.title}')`}`
+                    })}
+                </div>
+            `;
+        } else {
+            actionBoxHtml = `
+                <div class="action-box nb-card">
+                    <div class="price-info">
+                        <span class="status-label">AVAILABLE NOW</span>
+                        <div class="current-price">$${bestDeal.price}</div>
+                    </div>
+                    ${renderButton({
+                        label: 'Own Now',
+                        variant: 'primary',
+                        extraClasses: 'own-btn',
+                        onClick: `window.uiEngine.ownGame('${game.id}', '${game.title}')`
+                    })}
+                </div>
+            `;
+        }
 
         return `
             <div class="game-detail">
@@ -65,14 +113,26 @@ import { tooltipProps } from './ui/tooltip.js';
                         <div class="detail-title-row">
                             <h1 class="nb-title">${game.title}</h1>
                             <div class="detail-meta">
-                                <span class="rating" ${tooltipProps('User Rating', 'top')}>⭐ ${game.rating}</span>
-                                <span class="category" ${tooltipProps('Category', 'top')}>${game.category}</span>
+                                <span class="rating" ${tooltipProps('User Rating', 'top')}>
+                                    <i data-lucide="star"></i>
+                                    ${game.rating}
+                                </span>
+                                <span class="category" ${tooltipProps('Category', 'top')}>
+                                    <i data-lucide="tag"></i>
+                                    ${game.category}
+                                </span>
                             </div>
                         </div>
                         
                         <div class="detail-developer-info">
-                            <p><strong>Developer:</strong> ${game.developer}</p>
-                            <p><strong>Release Date:</strong> ${game.releaseDate}</p>
+                            <div class="info-item">
+                                <span class="label">Developer</span>
+                                <span class="value">${game.developer}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Release Date</span>
+                                <span class="value">${game.releaseDate}</span>
+                            </div>
                         </div>
 
                         <div class="detail-description">
@@ -82,10 +142,7 @@ import { tooltipProps } from './ui/tooltip.js';
                     </div>
 
                     <div class="detail-sidebar">
-                        <div class="action-box nb-card">
-                            <div class="current-price">$${bestDeal.price}</div>
-                            ${ownBtn}
-                        </div>
+                        ${actionBoxHtml}
 
                         <div class="price-comparison nb-card">
                             <h3 class="nb-subtitle">Price Comparison</h3>

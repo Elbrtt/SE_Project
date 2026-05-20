@@ -17,21 +17,21 @@ import { renderButton } from './ui/button.js';
         if (friend.status === 'In-Game') statusClass = 'in-game';
 
         const chatBtn = renderButton({
-            label: '💬',
+            label: '<i data-lucide="message-square"></i>',
             variant: 'ghost',
             extraClasses: 'action-btn',
             onClick: `window.uiEngine.openChat('${friend.id}')`
         });
 
         const callBtn = renderButton({
-            label: '📞',
+            label: '<i data-lucide="phone"></i>',
             variant: 'ghost',
             extraClasses: 'action-btn',
             onClick: `event.stopPropagation(); window.notificationService.showNotification('Calling ${friend.name}...')`
         });
 
         const videoBtn = renderButton({
-            label: '🎥',
+            label: '<i data-lucide="video"></i>',
             variant: 'ghost',
             extraClasses: 'action-btn',
             onClick: `event.stopPropagation(); window.notificationService.showNotification('Starting video call with ${friend.name}...')`

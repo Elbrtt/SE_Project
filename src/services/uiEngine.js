@@ -48,6 +48,11 @@ function renderFriendsList() {
             </div>
         </div>
     `;
+
+    // Initialize Lucide icons
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
 }
 
 /**
@@ -85,6 +90,7 @@ function ownGame(gameId, gameTitle) {
             const game = window.gameService.getGameById(gameId);
             if (game) {
                 detailPage.innerHTML = window.components.renderGameDetail(game, true);
+                if (window.lucide) window.lucide.createIcons();
             }
         }
 
@@ -118,6 +124,7 @@ function removeGame(gameId) {
         const game = window.gameService.getGameById(gameId);
         if (game) {
             detailPage.innerHTML = window.components.renderGameDetail(game, false);
+            if (window.lucide) window.lucide.createIcons();
         }
     }
 
@@ -125,10 +132,53 @@ function removeGame(gameId) {
 }
 
 /**
+ * Refreshes UI across multiple views.
+ */
+function refreshUI(gameId) {
+    window.gameLibraryService.renderLibraryGames();
+    window.gameLibraryService.renderRecommendedGames();
+    window.gameLibraryService.renderDeals();
+    updateFeaturedButtonState();
+
+    // Update detail page if active and matches gameId
+    const detailPage = document.getElementById('detailPage');
+    if (detailPage && detailPage.classList.contains('active')) {
+        const game = window.gameService.getGameById(gameId);
+        if (game) {
+            const isOwned = window.ownedState.isOwned(gameId);
+            detailPage.innerHTML = window.components.renderGameDetail(game, isOwned);
+            if (window.lucide) window.lucide.createIcons();
+        }
+    }
+}
+
+/**
  * Handles "Download" button click.
  */
-function downloadGame(gameTitle) {
-    window.notificationService.showNotification(`${gameTitle} downloaded successfully!`);
+function downloadGame(gameId, gameTitle) {
+    const gameStatus = window.ownedState.getGameStatus(gameId);
+    if (!gameStatus || gameStatus.status === 'installed' || gameStatus.status === 'downloading') {
+        return;
+    }
+
+    window.ownedState.updateGameStatus(gameId, 'downloading', 0);
+    refreshUI(gameId);
+    window.notificationService.showNotification(`Starting download: ${gameTitle}`);
+
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.floor(Math.random() * 15) + 5;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            window.ownedState.updateGameStatus(gameId, 'installed', 100);
+            refreshUI(gameId);
+            window.notificationService.showNotification(`${gameTitle} installed successfully!`);
+        } else {
+            window.ownedState.updateGameStatus(gameId, 'downloading', progress);
+            refreshUI(gameId);
+        }
+    }, 800);
 }
 
 /**

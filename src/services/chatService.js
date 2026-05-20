@@ -9,8 +9,21 @@ function openChat(friendId) {
 
     chatArea.innerHTML = `
         <div class="chat-header">
-            <img src="${friend.avatar}" class="friend-avatar">
-            <h3>${friend.name}</h3>
+            <div class="chat-header-info">
+                <img src="${friend.avatar}" class="friend-avatar">
+                <div>
+                    <h3>${friend.name}</h3>
+                    <span class="chat-status">${friend.status}</span>
+                </div>
+            </div>
+            <div class="chat-header-actions">
+                <button class="chat-action-btn" onclick="window.notificationService.showNotification('Calling ${friend.name}...')">
+                    <i data-lucide="phone"></i>
+                </button>
+                <button class="chat-action-btn" onclick="window.notificationService.showNotification('Starting video call with ${friend.name}...')">
+                    <i data-lucide="video"></i>
+                </button>
+            </div>
         </div>
         <div class="chat-messages" id="chatMessages">
             <div class="msg received">Hey! Are you online?</div>
@@ -18,10 +31,25 @@ function openChat(friendId) {
             <div class="msg sent">Sure! Let's go.</div>
         </div>
         <div class="chat-input-area">
-            <input type="text" placeholder="Type a message..." id="chatInput">
-            <button class="nb-btn nb-btn-primary" onclick="window.chatService.sendMessage()">Send</button>
+            <input type="text" placeholder="Type a message..." id="chatInput" autocomplete="off">
+            <button class="chat-send-btn" onclick="window.chatService.sendMessage()">
+                <i data-lucide="send"></i>
+            </button>
         </div>
     `;
+
+    // Initialize Lucide icons
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+
+    // Enter key support
+    const input = document.getElementById('chatInput');
+    input.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            window.chatService.sendMessage();
+        }
+    });
 
     // Scroll to bottom
     const msgContainer = document.getElementById('chatMessages');

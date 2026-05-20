@@ -41,6 +41,11 @@ function showPage(pageName, data) {
         if (game) {
             detailPage.innerHTML = window.components.renderGameDetail(game, isOwned);
             detailPage.classList.add('active');
+
+            // Initialize Lucide icons
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
         }
     }
 }

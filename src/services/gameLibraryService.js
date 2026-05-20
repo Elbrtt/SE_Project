@@ -22,7 +22,8 @@ function renderDeals() {
     if (!dealsGrid) return;
 
     const games = window.gameService.getAllGames();
-    const deals = games.filter(game => game.deals && game.deals.length > 0);
+    // Filter for "worth it" deals: discount > 20%
+    const deals = games.filter(game => game.deals && game.deals.length > 0 && game.deals[0].discount > 20);
 
     dealsGrid.innerHTML = deals.map(game => {
         const bestDeal = game.deals[0];
@@ -32,7 +33,13 @@ function renderDeals() {
             title: game.title,
             image: game.image,
             content: `
-                <div class="nb-badge nb-badge-danger">-${bestDeal.discount}%</div>
+                <div class="deal-meta">
+                    <div class="nb-badge nb-badge-danger">-${bestDeal.discount}%</div>
+                    <div class="platform-icons">
+                        <i data-lucide="monitor" class="platform-icon"></i>
+                        <i data-lucide="command" class="platform-icon"></i>
+                    </div>
+                </div>
                 <div class="deal-price-row">
                     <span class="old-price">$${oldPrice}</span>
                     <span class="new-price">$${bestDeal.price}</span>
@@ -42,6 +49,10 @@ function renderDeals() {
             onClick: `window.navigationService.showPage('detail', '${game.id}')`
         });
     }).join('');
+
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
 }
 
 function renderLibraryGames() {
@@ -67,13 +78,48 @@ function renderLibraryGames() {
             image: '../assets/games/cyberpunk.jpg'
         };
 
+        const state = window.ownedState.getGameStatus(ownedGame.id);
+        const status = state ? state.status : 'ready';
+        const progress = state ? state.progress : 0;
+
+        let statusText = 'Ready to Download';
+        let statusIcon = 'download-cloud';
+        let actionLabel = 'Download';
+        let actionIcon = 'download';
+        let isDownloading = status === 'downloading';
+
+        if (status === 'downloading') {
+            statusText = `Downloading... ${progress}%`;
+            statusIcon = 'loader';
+            actionLabel = 'Downloading';
+        } else if (status === 'installed') {
+            statusText = 'Ready to Play';
+            statusIcon = 'check-circle';
+            actionLabel = 'Play';
+            actionIcon = 'play';
+        }
+
+        const statusHtml = `
+            <div class="library-game-status-container">
+                <div ${tooltipProps(status === 'installed' ? 'Installed on Nebula' : 'Cloud Library', 'top')} class="library-game-status ${status}">
+                    <i data-lucide="${statusIcon}" class="status-icon ${isDownloading ? 'spin' : ''}"></i>
+                    <span>${statusText}</span>
+                </div>
+                ${isDownloading ? `
+                    <div class="nb-progress-bar">
+                        <div class="nb-progress-fill" style="width: ${progress}%"></div>
+                    </div>
+                ` : ''}
+            </div>
+        `;
+
         const actions = `
             <div class="library-game-actions">
                 ${renderButton({
-                    label: 'Download',
-                    variant: 'primary',
-                    extraClasses: 'download-btn',
-                    onClick: `event.stopPropagation(); window.uiEngine.downloadGame('${gameData.title}')`
+                    label: actionLabel,
+                    variant: status === 'installed' ? 'secondary' : 'primary',
+                    extraClasses: `download-btn ${isDownloading ? 'disabled' : ''}`,
+                    onClick: isDownloading ? '' : `event.stopPropagation(); ${status === 'installed' ? `window.notificationService.showNotification('Launching ${gameData.title}...')` : `window.uiEngine.downloadGame('${ownedGame.id}', '${gameData.title}')`}`
                 })}
                 ${renderButton({
                     label: 'Remove',
@@ -86,13 +132,17 @@ function renderLibraryGames() {
 
         return renderCard({
             title: gameData.title,
-            content: `<div ${tooltipProps('Installed on Nebula', 'top')} class="library-game-status">✓ Ready to play</div>`,
+            content: statusHtml,
             image: gameData.image,
             footer: actions,
-            extraClasses: 'library-game-card',
+            extraClasses: `library-game-card ${status}`,
             onClick: `window.navigationService.showPage('detail', '${ownedGame.id}')`
         });
     }).join('');
+
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
 }
 
 window.gameLibraryService = {
