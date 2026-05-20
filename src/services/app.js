@@ -57,7 +57,7 @@ let ownedGames = [];
 document.addEventListener('DOMContentLoaded', () => {
     loadOwnedGames();
     renderRecommendedGames();
-    updateFeaturedButtonState(); // Sinkronisasi tombol banner utama
+    updateFeaturedButtonState(); 
     setupEventListeners();
     showPage('discover');
 });
@@ -80,17 +80,24 @@ function renderRecommendedGames() {
         gamesGrid.innerHTML = games.map(game => createGameCard(game)).join('');
     }
     
-    // Bind click events ke semua tombol own (termasuk yang di banner atas)
-    document.querySelectorAll('.own-btn').forEach(btn => {
-        btn.replaceWith(btn.cloneNode(true));
-    });
-
-    document.querySelectorAll('.own-btn').forEach(btn => {
+    // Bind click events ke semua tombol own secara aman
+    document.querySelectorAll('.game-card-action.own-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation(); // Mencegah detail page ikut terbuka saat tombol diklik
             const gameId = btn.dataset.gameId;
             const gameTitle = btn.dataset.gameTitle;
             ownGame(gameId, gameTitle);
+        });
+    });
+
+    // Bind click events ke container card untuk membuka Detail Page
+    document.querySelectorAll('.game-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const btn = card.querySelector('.own-btn');
+            if (btn) {
+                renderGameDetail(btn.dataset.gameId);
+            }
         });
     });
 }
@@ -142,6 +149,55 @@ function updateFeaturedButtonState() {
         const isOwned = ownedGames.some(g => g.id === 'featured-1');
         featuredBtn.textContent = isOwned ? 'OWNED' : 'Own Now';
     }
+}
+
+// Render fungsi detail halaman secara dinamis
+function renderGameDetail(gameId) {
+    let game = games.find(g => g.id === gameId);
+    
+    // Fallback data khusus jika yang diklik adalah Featured Game (Dota 2)
+    if (!game && gameId === 'featured-1') {
+        game = {
+            id: 'featured-1',
+            title: 'DOTA 2',
+            category: 'Action RTS',
+            image: '../assets/games/images/dota_2/header.jpg',
+            description: "Deepest multi-player action RTS game ever made and there's always a new strategy or tactic to discover. It's completely free to play and always will be – start defending your ancient now."
+        };
+    }
+    
+    if (!game) return;
+
+    const isOwned = ownedGames.some(g => g.id === game.id);
+
+    // Update elemen DOM Detail Page
+    document.getElementById('detailTitle').textContent = game.title;
+    document.getElementById('detailCategory').textContent = game.category;
+    document.getElementById('detailDescription').textContent = game.description || 
+        `Immerse yourself in the world of ${game.title}. Master its complex mechanics, explore beautiful environments, and build your ultimate playstyle in this industry-leading title.`;
+    document.getElementById('detailHeaderImage').style.backgroundImage = `url('${game.image}')`;
+
+    const actionBtn = document.getElementById('detailActionBtn');
+    
+    // Reset event listener button dengan cloning
+    actionBtn.replaceWith(actionBtn.cloneNode(true));
+    const newActionBtn = document.getElementById('detailActionBtn');
+
+    if (isOwned) {
+        newActionBtn.textContent = 'INSTALLED / IN LIBRARY';
+        newActionBtn.className = 'btn btn-secondary main-action-btn';
+        newActionBtn.style.cursor = 'default';
+    } else {
+        newActionBtn.textContent = 'OWN NOW';
+        newActionBtn.className = 'btn btn-primary main-action-btn';
+        newActionBtn.style.cursor = 'pointer';
+        newActionBtn.addEventListener('click', () => {
+            ownGame(game.id, game.title);
+            renderGameDetail(game.id); // Re-render status tombol detail setelah dibeli
+        });
+    }
+
+    showPage('detail');
 }
 
 // Render owned games in library
@@ -278,14 +334,34 @@ function showPage(pageName) {
         document.getElementById('libraryPage').classList.add('active');
         document.querySelector('.library').classList.add('active');
         renderLibraryGames();
+    } else if (pageName === 'detail') {
+        document.getElementById('detailPage').classList.add('active');
     }
 }
 
-// Setup event listeners (SINTAKSIS SUDAH DIPERBAIKI TOTAL)
+// Setup event listeners
 function setupEventListeners() {
     document.querySelector('.discover').addEventListener('click', () => showPage('discover'));
     document.querySelector('.library').addEventListener('click', () => showPage('library'));
     
+    // Back button click on detail page
+    document.getElementById('backToDiscoverBtn').addEventListener('click', () => showPage('discover'));
+
+    // Featured banner Learn More button click
+    const featuredLearnMore = document.querySelector('.featured-info .btn-secondary');
+    if (featuredLearnMore) {
+        featuredLearnMore.addEventListener('click', () => renderGameDetail('featured-1'));
+    }
+
+    // Banner Top Own Now button event handler
+    const bannerOwnBtn = document.querySelector('.featured-actions .own-btn');
+    if (bannerOwnBtn) {
+        bannerOwnBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            ownGame(bannerOwnBtn.dataset.gameId, bannerOwnBtn.dataset.gameTitle);
+        });
+    }
+
     // Logika Tombol Hamburger Terpusat & Konsisten ☰
     document.getElementById('collapseBtn').addEventListener('click', () => {
         const navbar = document.getElementById('navbar');

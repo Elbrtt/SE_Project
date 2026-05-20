@@ -61,7 +61,7 @@
                         <p> Deepest multi-player action RTS game ever made and there's always a new strategy or tactic to discover.
                             It's completely free to play and always will be – start defending your ancient now.</p>
                         <div class="featured-actions">
-                            <button class="btn btn-primary own-btn" data-game-id="featured-1" data-game-title="Cyber Nexus">
+                            <button class="btn btn-primary own-btn" data-game-id="featured-1" data-game-title="Dota 2">
                                 Own Now
                             </button>
                             <button class="btn btn-secondary">
@@ -82,12 +82,33 @@
                 <div class="library-content">
                     <h1>My Library</h1>
                     <div class="owned-games" id="ownedGames">
-                        </div>
+                    </div>
                     <div class="empty-library" id="emptyLibrary">
                         <p>No games owned yet. Visit Discover to add games to your library!</p>
                     </div>
                 </div>
             </div>
+            
+            <div class="page detail-page" id="detailPage">
+                <button class="btn btn-secondary back-btn" id="backToDiscoverBtn" style="margin-bottom: 1.5rem;">
+                    ← Back to Discover
+                </button>
+                <div class="detail-container">
+                    <div class="detail-header" id="detailHeaderImage"></div>
+                    <div class="detail-body">
+                        <div class="detail-main-info">
+                            <h1 id="detailTitle">Game Title</h1>
+                            <div class="detail-category" id="detailCategory">Category</div>
+                            <p class="detail-description" id="detailDescription">Game description...</p>
+                        </div>
+                        <div class="detail-side-panel">
+                            <div class="detail-action-box">
+                                <span style="color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: 0.5rem; display: block;">STATUS</span>
+                                <button class="btn btn-primary main-action-btn" id="detailActionBtn">Own Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
         </div>
     </div>
