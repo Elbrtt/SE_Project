@@ -17,6 +17,17 @@ import { tooltipProps } from './ui/tooltip.js';
         // Find best deal or use default
         const bestDeal = game.deals && game.deals.length > 0 ? game.deals[0] : { price: 'Free', source: 'Internal' };
         
+        // Helper for store icons
+        const getStoreIcon = (source) => {
+            const src = source.toLowerCase();
+            if (src.includes('steam')) return 'monitor';
+            if (src.includes('epic')) return 'gamepad-2';
+            if (src.includes('gog')) return 'ghost';
+            if (src.includes('origin') || src.includes('ea')) return 'zap';
+            if (src.includes('ubisoft') || src.includes('uplay')) return 'shield';
+            return 'shopping-cart';
+        };
+
         const dealsHtml = (game.deals || []).map(deal => {
             const viewBtn = renderButton({
                 label: 'View Deal',
@@ -28,7 +39,7 @@ import { tooltipProps } from './ui/tooltip.js';
             return `
                 <div class="deal-item nb-hover-elevate">
                     <div class="deal-store">
-                        <i data-lucide="shopping-cart"></i>
+                        <i data-lucide="${getStoreIcon(deal.source)}"></i>
                         <span class="store-name">${deal.source}</span>
                     </div>
                     <div class="deal-info">
@@ -58,10 +69,15 @@ import { tooltipProps } from './ui/tooltip.js';
             
             let btnLabel = 'Download';
             let btnVariant = 'primary';
-            if (status === 'downloading') btnLabel = `Downloading ${progress}%`;
-            else if (status === 'installed') {
+            let btnIcon = 'download';
+
+            if (status === 'downloading') {
+                btnLabel = `Downloading ${progress}%`;
+                btnIcon = 'loader-2';
+            } else if (status === 'installed') {
                 btnLabel = 'Play Now';
                 btnVariant = 'secondary';
+                btnIcon = 'play';
             }
 
             actionBoxHtml = `
@@ -76,6 +92,7 @@ import { tooltipProps } from './ui/tooltip.js';
                     ${renderButton({
                         label: btnLabel,
                         variant: btnVariant,
+                        icon: `<i data-lucide="${btnIcon}" class="${status === 'downloading' ? 'animate-spin' : ''}"></i>`,
                         extraClasses: `own-btn ${isDownloading ? 'disabled' : ''}`,
                         onClick: isDownloading ? '' : `${status === 'installed' ? `window.notificationService.showNotification('Launching ${game.title}...')` : `window.uiEngine.downloadGame('${game.id}', '${game.title}')`}`
                     })}
@@ -91,6 +108,7 @@ import { tooltipProps } from './ui/tooltip.js';
                     ${renderButton({
                         label: 'Own Now',
                         variant: 'primary',
+                        icon: '<i data-lucide="shopping-bag"></i>',
                         extraClasses: 'own-btn',
                         onClick: `window.uiEngine.ownGame('${game.id}', '${game.title}')`
                     })}

@@ -66,18 +66,24 @@
     --sys-color-bg-secondary: var(--ref-color-neutral-10);
     --sys-color-bg-tertiary: var(--ref-color-neutral-20);
     --sys-color-bg-elevated: var(--ref-color-neutral-30);
+    --sys-color-bg-alpha-low: rgba(255, 255, 255, 0.03);
+    --sys-color-bg-alpha-med: rgba(255, 255, 255, 0.06);
+    --sys-color-bg-alpha-high: rgba(255, 255, 255, 0.1);
     
     /* Branding */
     --sys-color-accent: var(--ref-color-accent-primary);
     --sys-color-accent-hover: var(--ref-color-accent-hover);
     --sys-color-accent-soft: var(--ref-color-accent-soft);
     --sys-color-accent-glow: var(--ref-color-accent-glow);
+    --sys-color-accent-alpha-10: rgba(88, 101, 242, 0.1);
+    --sys-color-accent-alpha-20: rgba(88, 101, 242, 0.2);
     
     /* Text */
     --sys-color-text-primary: var(--ref-color-text-100);
     --sys-color-text-secondary: var(--ref-color-text-200);
     --sys-color-text-muted: var(--ref-color-text-300);
     --sys-color-text-disabled: var(--ref-color-text-400);
+    --sys-color-text-tertiary: var(--ref-color-text-300); /* Alias */
 
     /* Borders */
     --sys-color-border-primary: var(--ref-color-neutral-40);
@@ -86,8 +92,10 @@
 
     /* Status */
     --sys-color-success: var(--ref-color-status-success);
+    --sys-color-success-alpha-10: rgba(63, 185, 80, 0.1);
     --sys-color-warning: var(--ref-color-status-warning);
     --sys-color-danger: var(--ref-color-status-danger);
+    --sys-color-danger-alpha-10: rgba(248, 81, 73, 0.1);
     --sys-color-info: var(--ref-color-status-info);
 
     /* Spacing Scale */
@@ -102,6 +110,13 @@
     --sys-radius-card: var(--ref-radius-md);
     --sys-radius-modal: var(--ref-radius-lg);
 
+    /* Shadows */
+    --sys-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --sys-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --sys-shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.3);
+    --sys-shadow-nebula: 0 var(--sys-spacing-xs) var(--ref-spacing-20) rgba(0, 0, 0, 0.25);
+    --sys-shadow-accent: 0 0 20px var(--sys-color-accent-glow);
+
     /* =========================================================
        LEGACY COMPATIBILITY (MAPS TO SYSTEM)
        ========================================================= */
@@ -115,7 +130,7 @@
     --color-accent: var(--sys-color-accent);
     --color-accent-hover: var(--sys-color-accent-hover);
     --color-accent-alpha-15: rgba(88, 101, 242, 0.15);
-    --color-accent-alpha-20: rgba(88, 101, 242, 0.2);
+    --color-accent-alpha-20: var(--sys-color-accent-alpha-20);
     --color-accent-alpha-25: rgba(88, 101, 242, 0.25);
     --color-border: var(--sys-color-border-soft);
     
@@ -132,10 +147,10 @@
     --bg-card: var(--sys-color-bg-secondary);
     --color-text-primary: var(--sys-color-text-primary);
     --color-text-muted: var(--sys-color-text-secondary);
-    --color-text-dark: #000000;
+    --color-text-dark: var(--ref-color-neutral-0);
     --color-badge-danger: var(--sys-color-danger);
     --color-badge-danger-hover: var(--ref-color-status-danger);
-    --color-rating: #FFD700;
+    --color-rating: var(--sys-color-warning);
 
     --radius-btn: var(--sys-radius-button);
     --radius-card: var(--sys-radius-card);
@@ -148,8 +163,9 @@
     --font-main: var(--ref-font-family-primary);
     --font-heading: var(--ref-font-family-secondary);
     
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-    --shadow-nebula: 0 var(--sys-spacing-xs) var(--ref-spacing-20) rgba(0, 0, 0, 0.25);
+    --shadow-sm: var(--sys-shadow-sm);
+    --shadow-md: var(--sys-shadow-md);
+    --shadow-lg: var(--sys-shadow-lg);
+    --shadow-nebula: var(--sys-shadow-nebula);
+}
 }

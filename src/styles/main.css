@@ -19,23 +19,22 @@
 @import "pages/friends.css";
 @import "pages/detail.css";
 
-/* Contrast Fixes */
-.current-price, .detail-developer-info, .store-name, .detail-description p {
-    color: var(--sys-color-text-primary) !important;
+/* Global Refinements */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-.detail-developer-info {
-    background: rgba(255, 255, 255, 0.05);
+::-webkit-scrollbar-track {
+    background: var(--sys-color-bg-primary);
 }
 
-.back-img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-    filter: brightness(0.8);
-    transition: filter var(--anim-duration-snappy) var(--anim-easing-standard);
+::-webkit-scrollbar-thumb {
+    background: var(--sys-color-border-primary);
+    border-radius: var(--ref-radius-full);
 }
 
-.back-btn:hover .back-img {
-    filter: brightness(1.2) drop-shadow(0 0 6px rgba(9, 163, 194, 0.6));
+::-webkit-scrollbar-thumb:hover {
+    background: var(--sys-color-accent-soft);
 }
+

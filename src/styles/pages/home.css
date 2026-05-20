@@ -4,21 +4,22 @@
     display: flex;
     gap: var(--sys-spacing-xl);
     margin-bottom: var(--sys-spacing-xl);
-    background: linear-gradient(135deg, var(--sys-color-accent-glow), rgba(88, 101, 242, 0.1));
+    background: linear-gradient(135deg, var(--sys-color-accent-alpha-10), rgba(88, 101, 242, 0.05));
     border-radius: var(--sys-radius-card);
     overflow: hidden;
     border: 1px solid var(--sys-color-border-soft);
     height: 380px;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--sys-shadow-md);
     transition: transform var(--anim-duration-standard) var(--anim-easing-standard), 
                 box-shadow var(--anim-duration-standard) var(--anim-easing-standard);
 }
 
 .featured-section:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg), 0 0 20px var(--sys-color-accent-glow);
+    box-shadow: var(--sys-shadow-lg), var(--sys-shadow-accent);
     border-color: var(--sys-color-accent-soft);
 }
+
 
 .featured-image {
     width: 65%;
@@ -94,43 +95,64 @@
     gap: var(--sys-spacing-lg);
 }
 
+/* Deal Card Specifics */
 .deal-card {
-    transition: transform var(--anim-duration-standard) var(--anim-easing-standard), 
-                box-shadow var(--anim-duration-standard) var(--anim-easing-standard) !important;
+    border: 1px solid var(--sys-color-border-soft) !important;
+    background: linear-gradient(180deg, var(--sys-color-bg-secondary) 0%, var(--sys-color-bg-alpha-high) 100%) !important;
+    transition: all var(--anim-duration-standard) var(--anim-easing-standard) !important;
 }
 
 .deal-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--sys-shadow-lg), var(--sys-shadow-accent);
     border-color: var(--sys-color-accent-soft) !important;
+}
+
+
+.deal-card .nb-card-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.deal-card .nb-card-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.8), transparent);
 }
 
 .deal-card .nb-card-body {
     display: flex;
     flex-direction: column;
-    gap: var(--sys-spacing-md);
+    gap: var(--sys-spacing-sm);
+    padding-top: var(--sys-spacing-md);
 }
 
 .deal-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: var(--sys-spacing-xs);
 }
 
 /* Badge System */
 .nb-badge {
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.05em;
+    font-family: var(--ref-font-family-secondary);
 }
 
 .nb-badge-danger {
     background-color: var(--sys-color-danger);
     color: white;
-    box-shadow: 0 0 10px rgba(248, 81, 73, 0.3);
+    box-shadow: 0 0 12px rgba(248, 81, 73, 0.25);
 }
 
 .platform-icons {
@@ -140,33 +162,36 @@
 }
 
 .platform-icon {
-    width: 16px;
-    height: 16px;
-    opacity: 0.6;
-    transition: opacity var(--anim-duration-snappy) var(--anim-easing-standard);
+    width: 14px;
+    height: 14px;
+    opacity: 0.5;
+    transition: all var(--anim-duration-snappy) var(--anim-easing-standard);
 }
 
 .deal-card:hover .platform-icon {
     opacity: 1;
     color: var(--sys-color-accent-soft);
+    transform: scale(1.1);
 }
 
 .deal-price-row {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: var(--sys-spacing-sm);
-    margin-top: 4px;
+    margin-top: var(--sys-spacing-xs);
 }
 
 .old-price {
-    color: var(--sys-color-text-disabled);
+    color: var(--sys-color-text-muted);
     text-decoration: line-through;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
 }
 
 .new-price {
     color: var(--sys-color-success);
     font-weight: 800;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-family: var(--ref-font-family-secondary);
+    letter-spacing: -0.01em;
 }

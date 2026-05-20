@@ -2,19 +2,22 @@
 .top-bar {
     display: flex;
     width: 100%;
-    background-color: var(--bg-top-bar);
+    background-color: var(--sys-color-bg-primary);
     justify-content: end;
     -webkit-app-region: drag;
-    gap: calc(var(--ref-spacing-4) * 1.2); /* 0.3rem */
+    gap: var(--sys-spacing-xs);
+    border-bottom: 1px solid var(--sys-color-border-soft);
 }
 
 .min-button, .win-button, .exit-button {
-    padding: calc(var(--ref-spacing-4) * 1.2) calc(var(--ref-spacing-4) * 2.8); /* 0.3rem 0.7rem */
+    padding: calc(var(--ref-spacing-4) * 1.5) calc(var(--ref-spacing-4) * 3);
     border-style: none;
-    color: var(--color-top-bar-text);
-    background-color: var(--bg-top-bar);
-    -webkit-app-region: no-drag;   
+    color: var(--sys-color-text-primary);
+    background-color: transparent;
+    -webkit-app-region: no-drag;
+    transition: background-color var(--anim-duration-snappy);
 }
+
 
 .min-img, .win-img, .exit-img {
     width: var(--ref-spacing-12);

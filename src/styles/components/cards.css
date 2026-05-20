@@ -136,20 +136,21 @@
     align-items: center;
     gap: var(--sys-spacing-md);
     padding: var(--space-3);
-    border-radius: var(--sys-spacing-sm);
-    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--sys-radius-card);
+    background: var(--sys-color-bg-alpha-low);
     border: 1px solid transparent;
     transition: all var(--anim-duration-snappy) var(--anim-easing-standard);
 }
 
 .friend-card:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: var(--color-accent);
+    background: var(--sys-color-bg-alpha-med);
+    border-color: var(--sys-color-accent);
 }
 
 .friend-avatar-container {
     position: relative;
 }
+
 
 .friend-avatar {
     width: calc(var(--ref-spacing-4) * 11); /* 44px */

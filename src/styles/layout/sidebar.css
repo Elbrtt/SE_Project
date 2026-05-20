@@ -2,15 +2,16 @@
 .nav-bar {
     width: calc(var(--ref-spacing-40) * 6); /* 240px */
     height: 100%;
-    background: black;
+    background: var(--sys-color-bg-primary);
     display: flex;
     flex-direction: column;
-    border-right: 1px solid var(--color-border);
+    border-right: 1px solid var(--sys-color-border-soft);
     transition: transform var(--anim-duration-standard) var(--anim-easing-standard);
     position: relative;
     z-index: 10;
     will-change: transform;
 }
+
 
 .nav-bar.collapsed {
     transform: translateX(calc(var(--ref-spacing-20) * -9)); /* -180px */
@@ -124,9 +125,10 @@
 }
 
 .friends:hover, .library:hover, .discover:hover {
-    color: var(--color-text-muted);
-    background-color: rgba(219, 219, 219, 0.171);
+    color: var(--sys-color-text-primary);
+    background-color: var(--sys-color-bg-alpha-high);
 }
+
 
 .nav-btn {
     position: relative;

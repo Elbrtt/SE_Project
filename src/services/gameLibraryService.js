@@ -22,13 +22,31 @@ function renderDeals() {
     if (!dealsGrid) return;
 
     const games = window.gameService.getAllGames();
-    // Filter for "worth it" deals: discount > 20%
-    const deals = games.filter(game => game.deals && game.deals.length > 0 && game.deals[0].discount > 20);
+    
+    // Filter for "worth it" deals: discount > 20% OR price <= 15
+    const deals = games.filter(game => {
+        if (!game.deals || game.deals.length === 0) return false;
+        return game.deals.some(deal => deal.discount > 20 || deal.price <= 15);
+    });
 
     dealsGrid.innerHTML = deals.map(game => {
-        const bestDeal = game.deals[0];
+        // Find the best deal for this game
+        const bestDeal = game.deals.reduce((best, current) => {
+            return (current.discount > best.discount) ? current : best;
+        }, game.deals[0]);
+
         const oldPrice = (parseFloat(bestDeal.price) / (1 - bestDeal.discount / 100)).toFixed(2);
         
+        // Map platform to Lucide icon
+        const getPlatformIcon = (source) => {
+            switch(source.toLowerCase()) {
+                case 'steam': return 'monitor';
+                case 'epic': return 'gamepad-2';
+                case 'gog': return 'ghost';
+                default: return 'command';
+            }
+        };
+
         return renderCard({
             title: game.title,
             image: game.image,
@@ -36,8 +54,7 @@ function renderDeals() {
                 <div class="deal-meta">
                     <div class="nb-badge nb-badge-danger">-${bestDeal.discount}%</div>
                     <div class="platform-icons">
-                        <i data-lucide="monitor" class="platform-icon"></i>
-                        <i data-lucide="command" class="platform-icon"></i>
+                        ${game.deals.map(d => `<i data-lucide="${getPlatformIcon(d.source)}" class="platform-icon" title="${d.source}"></i>`).join('')}
                     </div>
                 </div>
                 <div class="deal-price-row">
