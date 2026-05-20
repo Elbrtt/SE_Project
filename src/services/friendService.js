@@ -32,6 +32,11 @@ const friends = [
     }
 ];
 
+export function getAllFriends() {
+    return friends;
+}
+
+// Keep global reference for legacy components if needed for now
 window.friendService = {
-    getAllFriends: () => friends
+    getAllFriends
 };

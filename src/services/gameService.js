@@ -57,3 +57,21 @@ export const games = [
         bg: '../assets/games/images/portal_2/hero.jpg'
     }
 ];
+
+export function getGameById(id) {
+    if (id === 'featured-1') {
+        return {
+            id: 'featured-1',
+            title: 'DOTA 2',
+            category: 'Action RTS',
+            image: '../assets/games/images/dota_2/header.jpg',
+            bg: '../assets/games/images/dota_2/hero.jpg',
+            description: "Deepest multi-player action RTS game ever made and there's always a new strategy or tactic to discover. It's completely free to play and always will be – start defending your ancient now."
+        };
+    }
+    return games.find(g => g.id === id);
+}
+
+// Global reference for legacy components
+window.gameService = { getGameById };
+

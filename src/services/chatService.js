@@ -1,6 +1,8 @@
 /**
  * Chat Service - Handles messaging and chat UI.
  */
+import { getAllFriends } from './friendService.js';
+import { showNotification } from './notificationService.js';
 
 const dummyMessages = {
     'friend-1': [
@@ -24,9 +26,9 @@ const dummyMessages = {
     ]
 };
 
-function openChat(friendId) {
+export function openChat(friendId) {
     const chatArea = document.querySelector('.chat-area');
-    const friend = window.friendService.getAllFriends().find(f => f.id === friendId);
+    const friend = getAllFriends().find(f => f.id === friendId);
     if (!friend || !chatArea) return;
 
     const messages = dummyMessages[friendId] || [];
@@ -44,10 +46,10 @@ function openChat(friendId) {
                 </div>
             </div>
             <div class="chat-header-actions">
-                <button class="chat-action-btn" onclick="window.notificationService.showNotification('Calling ${friend.name}...')">
+                <button class="chat-action-btn" id="callBtn">
                     <i data-lucide="phone"></i>
                 </button>
-                <button class="chat-action-btn" onclick="window.notificationService.showNotification('Starting video call with ${friend.name}...')">
+                <button class="chat-action-btn" id="videoBtn">
                     <i data-lucide="video"></i>
                 </button>
             </div>
@@ -57,7 +59,7 @@ function openChat(friendId) {
         </div>
         <div class="chat-input-area">
             <input type="text" placeholder="Type a message..." id="chatInput" autocomplete="off">
-            <button class="chat-send-btn" onclick="window.chatService.sendMessage()">
+            <button class="chat-send-btn" id="sendBtn">
                 <i data-lucide="send"></i>
             </button>
         </div>
@@ -68,11 +70,16 @@ function openChat(friendId) {
         window.lucide.createIcons();
     }
 
+    // Event Listeners
+    document.getElementById('callBtn').addEventListener('click', () => showNotification(`Calling ${friend.name}...`));
+    document.getElementById('videoBtn').addEventListener('click', () => showNotification(`Starting video call with ${friend.name}...`));
+    document.getElementById('sendBtn').addEventListener('click', sendMessage);
+
     // Enter key support
     const input = document.getElementById('chatInput');
     input.addEventListener('keyup', (e) => {
         if (e.key === 'Enter') {
-            window.chatService.sendMessage();
+            sendMessage();
         }
     });
 
@@ -83,7 +90,7 @@ function openChat(friendId) {
     }
 }
 
-function sendMessage() {
+export function sendMessage() {
     const input = document.getElementById('chatInput');
     const msgContainer = document.getElementById('chatMessages');
     if (!input || !input.value.trim()) return;
@@ -96,10 +103,11 @@ function sendMessage() {
     msgContainer.scrollTop = msgContainer.scrollHeight;
 
     setTimeout(() => {
-        window.notificationService.showNotification('Message sent!');
+        showNotification('Message sent!');
     }, 200);
 }
 
+// Keep global reference for legacy components if needed for now
 window.chatService = {
     openChat,
     sendMessage

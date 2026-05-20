@@ -2,7 +2,7 @@
  * Notification Service - Handles toast notifications.
  */
 
-function showNotification(message) {
+export function showNotification(message) {
     const notification = document.createElement('div');
     notification.classList.add('notification-toast', 'show');
     notification.textContent = message;
@@ -15,6 +15,7 @@ function showNotification(message) {
     }, 2500);
 }
 
+// Keep global reference for legacy components if needed for now
 window.notificationService = {
     showNotification
 };

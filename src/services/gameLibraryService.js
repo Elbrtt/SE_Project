@@ -78,11 +78,18 @@ export function renderLibraryGames(onDownload, onPlay, onRemove) {
             image: '../assets/games/images/dota_2/header.jpg'
         };
 
-        const isInstalled = ownedGame.isInstalled || false;
+        const state = window.ownedState.getGameStatus(ownedGame.id);
+        const status = state ? state.status : 'ready';
+        const progress = state ? state.progress : 0;
         
-        const actionButtonHTML = isInstalled 
-            ? `<button class="btn btn-play play-btn" data-game-id="${ownedGame.id}" data-game-title="${gameData.title}">Play</button>`
-            : `<button class="btn btn-primary download-btn" data-game-id="${ownedGame.id}" data-game-title="${gameData.title}">Download</button>`;
+        let actionButtonHTML = '';
+        if (status === 'downloading') {
+            actionButtonHTML = `<button class="btn btn-primary disabled" disabled>Downloading ${progress}%</button>`;
+        } else if (status === 'installed') {
+            actionButtonHTML = `<button class="btn btn-play play-btn" data-game-id="${ownedGame.id}" data-game-title="${gameData.title}">Play</button>`;
+        } else {
+            actionButtonHTML = `<button class="btn btn-primary download-btn" data-game-id="${ownedGame.id}" data-game-title="${gameData.title}">Download</button>`;
+        }
 
         return `
             <div class="library-game-card">
