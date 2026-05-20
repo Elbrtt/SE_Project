@@ -9,9 +9,9 @@ import { renderCard } from './ui/card.js';
  */
 export function renderGameCard(game, isOwned) {
     const ownedBadge = isOwned ? `<div class="game-card-owned">OWNED</div>` : '';
-    const buttonText = isOwned ? 'OWNED' : 'OWN';
+    const buttonText = isOwned ? 'OWNED' : 'Own Now';
     const buttonVariant = isOwned ? 'secondary' : 'primary';
-    
+
     const footer = renderButton({
         label: buttonText,
         variant: buttonVariant,
@@ -27,9 +27,11 @@ export function renderGameCard(game, isOwned) {
         `,
         image: game.image,
         footer: footer,
-        extraClasses: 'game-card'
+        extraClasses: 'game-card',
+        onClick: `window.navigationService.showPage('detail', '${game.id}')`
     });
 }
+
 
 // Expose to global scope
 window.components = window.components || {};
