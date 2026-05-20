@@ -183,15 +183,21 @@ function renderGameDetail(gameId) {
         `Immerse yourself in the world of ${game.title}. Master its complex mechanics, explore beautiful environments, and build your ultimate playstyle in this industry-leading title.`;
     document.getElementById('detailHeaderImage').style.backgroundImage = `url('${game.bg}')`;
 
+    const statusLabel = document.getElementById('detailStatusLabel');
+    if (statusLabel) statusLabel.textContent = isOwned ? 'IN YOUR LIBRARY' : 'STATUS';
+
     const actionBtn = document.getElementById('detailActionBtn');
     
     actionBtn.replaceWith(actionBtn.cloneNode(true));
     const newActionBtn = document.getElementById('detailActionBtn');
 
     if (isOwned) {
-        newActionBtn.textContent = 'IN LIBRARY';
-        newActionBtn.className = 'btn btn-secondary main-action-btn';
-        newActionBtn.style.cursor = 'default';
+        newActionBtn.textContent = 'PLAY NOW';
+        newActionBtn.className = 'btn btn-play main-action-btn';
+        newActionBtn.style.cursor = 'pointer';
+        newActionBtn.addEventListener('click', () => {
+            playGame(game.title);
+        });
     } else {
         newActionBtn.textContent = 'OWN NOW';
         newActionBtn.className = 'btn btn-primary main-action-btn';
