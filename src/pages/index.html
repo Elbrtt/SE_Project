@@ -61,10 +61,10 @@
                         <p> Deepest multi-player action RTS game ever made and there's always a new strategy or tactic to discover.
                             It's completely free to play and always will be – start defending your ancient now.</p>
                         <div class="featured-actions">
-                            <button class="btn btn-primary own-btn" data-game-id="featured-1" data-game-title="Dota 2">
+                            <button class="nb-btn nb-btn-primary own-btn" data-game-id="featured-1" data-game-title="Dota 2">
                                 Own Now
                             </button>
-                            <button class="btn btn-secondary">
+                            <button class="nb-btn nb-btn-secondary">
                                 Learn More
                             </button>
                         </div>
@@ -75,6 +75,11 @@
                     <h2>Recommended For You</h2>
                     <div class="games-grid" id="gamesGrid">
                         </div>
+                </div>
+
+                <div class="deals-section">
+                    <h2>Universal Deal Tracker</h2>
+                    <div class="deals-grid" id="dealsGrid"></div>
                 </div>
             </div>
 
@@ -88,6 +93,8 @@
                     </div>
                 </div>
             </div>
+
+            <div class="page friends-page" id="friendsPage"></div>
 
             <div class="page detail-page" id="detailPage">
                 <button class="back-btn" id="backToDiscoverBtn">
@@ -112,10 +119,17 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
         </div>
     </div>
 
-    <script src="../services/app.js"></script>
+    <script src="../services/friendService.js"></script>
+    <script src="../services/gameService.js"></script>
+    <script src="../services/ownedState.js"></script>
+    <script src="../components/gameCard.js" type="module"></script>
+    <script src="../components/friendCard.js"></script>
+    <script src="../components/gameDetail.js"></script>
+    <script src="../services/uiEngine.js" type="module"></script>
 </body>
 </html>
