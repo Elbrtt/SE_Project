@@ -54,8 +54,14 @@ export function renderLibraryGames() {
     
     if (emptyLibrary) emptyLibrary.classList.add('hidden');
     
+    // Masih di hardcode untuk id feature-1, fix
     ownedGamesContainer.innerHTML = ownedGames.map(ownedGame => {
         const gameData = games.find(g => g.id === ownedGame.id) || {
+            id: "featured-1",
+            title: 'Dota 2',
+            category: "Action RTS",
+            image: '../assets/games/images/dota_2/header.jpg'
+        } || {
             id: ownedGame.id,
             title: 'Unknown Game',
             image: '../assets/games/images/dota_2/header.jpg'

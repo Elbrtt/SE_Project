@@ -103,7 +103,7 @@ import { tooltipProps } from './ui/tooltip.js';
                 <div class="action-box nb-card">
                     <div class="price-info">
                         <span class="status-label">AVAILABLE NOW</span>
-                        <div class="current-price">$${bestDeal.price}</div>
+                        <div class="current-price">${bestDeal.price}</div>
                     </div>
                     ${renderButton({
                         label: 'Own Now',
@@ -123,7 +123,7 @@ import { tooltipProps } from './ui/tooltip.js';
                 </div>
                 
                 <div class="detail-banner nb-card">
-                    <img src="${game.image}" alt="${game.title}">
+                    <img src="${game.bg}" alt="${game.title}">
                 </div>
 
                 <div class="detail-content">

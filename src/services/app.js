@@ -35,9 +35,14 @@ function refreshDiscover() {
 function ownGame(gameId, gameTitle) {
     const isAlreadyOwned = ownedGames.some(g => g.id === gameId);
     if (!isAlreadyOwned) {
+        const game = getGameById(gameId); // ambil data lengkap
+        
         ownedGames.push({
             id: gameId,
-            title: gameTitle,
+            title: game?.title || gameTitle,
+            category: game?.category || '',
+            image: game?.image || '',
+            bg: game?.bg || '',
             datePurchased: new Date().toISOString(),
             isInstalled: false
         });
@@ -45,7 +50,6 @@ function ownGame(gameId, gameTitle) {
         refreshDiscover();
         showNotification(`${gameTitle} added to library!`);
         
-        // Refresh detail page if active
         const detailPage = document.getElementById('detailPage');
         if (detailPage.classList.contains('active')) {
             renderGameDetail(gameId);
