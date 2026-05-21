@@ -271,6 +271,7 @@
     align-items: center;
     gap: var(--sys-spacing-sm);
     flex: 1;
+    color: white
 }
 
 .deal-store i {

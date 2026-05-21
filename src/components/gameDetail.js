@@ -43,7 +43,7 @@ import { tooltipProps } from './ui/tooltip.js';
                         <span class="store-name">${deal.source}</span>
                     </div>
                     <div class="deal-info">
-                        <span class="deal-price">$${deal.price}</span>
+                        <span class="deal-price">${deal.price}</span>
                         <span class="deal-discount">-${deal.discount}%</span>
                     </div>
                     ${viewBtn}
@@ -52,7 +52,7 @@ import { tooltipProps } from './ui/tooltip.js';
         }).join('');
 
         const backBtn = renderButton({
-            label: 'Back to Discover',
+            label: '',
             variant: 'ghost',
             icon: '<i data-lucide="arrow-left"></i>',
             extraClasses: 'back-btn',

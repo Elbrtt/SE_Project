@@ -148,6 +148,7 @@
     cursor: pointer;
     opacity: 0.6;
     transition: opacity var(--anim-duration-snappy);
+    color: aliceblue;
 }
 
 .action-btn:hover {

@@ -11,7 +11,7 @@ export const games = [
         description: 'Dishonored is an immersive first-person action game that casts you as a supernatural assassin driven by revenge. With a flexible combat system, creatively eliminate your targets as you combine the supernatural abilities, weapons and unusual gadgets at your disposal. Pursue your enemies under the cover of darkness or ruthlessly attack them head on with weapons drawn.',
         deals: [
             { source: 'Steam', price: '$19.99', discount: 0 },
-            { source: 'Epic Games Store', price: '$9.99', discount: 50 },
+            { source: 'Epic', price: '$9.99', discount: 50 },
             { source: 'GOG', price: '$19.99', discount: 0 }
         ]
     },
@@ -27,7 +27,7 @@ export const games = [
         description: 'Dark Souls continues to push the boundaries with the latest, ambitious chapter in the critically-acclaimed and genre-defining series. Prepare yourself to Embrace The Darkness! As fires fade and the world falls into ruin, journey into a universe filled with more colossal enemies and environments.',
         deals: [
             { source: 'Steam', price: '$59.99', discount: 0 },
-            { source: 'Humble Store', price: '$14.99', discount: 75 }
+            { source: 'Humble', price: '$14.99', discount: 75 }
         ]
     },
     {
@@ -56,7 +56,7 @@ export const games = [
         releaseDate: 'Nov 9, 2022',
         description: 'From Santa Monica Studio comes the sequel to the critically acclaimed God of War (2018). Fimbulwinter is well underway. Kratos and Atreus must journey to each of the Nine Realms in search of answers as Asgardian forces prepare for a prophesied battle that will end the world.',
         deals: [
-            { source: 'PlayStation Store', price: '$69.99', discount: 0 },
+            { source: 'PlayStation', price: '$69.99', discount: 0 },
             { source: 'Steam', price: '$59.99', discount: 0 }
         ]
     },
@@ -72,7 +72,7 @@ export const games = [
         description: 'Cyberpunk 2077 is an open-world, action-adventure RPG set in the megalopolis of Night City, where you play as a cyberpunk mercenary wrapped up in a do-or-die fight for survival. Improved and featuring all-new free additional content, customize your character and playstyle as you take on jobs, build a reputation, and unlock upgrades.',
         deals: [
             { source: 'Steam', price: '$29.99', discount: 50 },
-            { source: 'Epic Games Store', price: '$29.99', discount: 50 },
+            { source: 'Epic', price: '$29.99', discount: 50 },
             { source: 'GOG', price: '$29.99', discount: 50 }
         ]
     },
@@ -88,7 +88,7 @@ export const games = [
         description: 'THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between. A vast world where open fields with a variety of situations and huge dungeons with complex and three-dimensional designs are seamlessly connected.',
         deals: [
             { source: 'Steam', price: '$59.99', discount: 0 },
-            { source: 'Bandai Namco Store', price: '$59.99', discount: 0 }
+            { source: 'Bandai Namco', price: '$59.99', discount: 0 }
         ]
     },
     {
@@ -103,7 +103,7 @@ export const games = [
         description: 'Defy the god of the dead as you hack and slash out of the Underworld in this rogue-like dungeon crawler from the creators of Bastion, Transistor, and Pyre. As the immortal Prince of the Underworld, you\'ll wield the powers and mythic weapons of Olympus to break free from the clutches of the god of the dead himself, while growing stronger and unraveling more of the story with each unique escape attempt.',
         deals: [
             { source: 'Steam', price: '$12.49', discount: 50 },
-            { source: 'Epic Games Store', price: '$12.49', discount: 50 }
+            { source: 'Epic', price: '$12.49', discount: 50 }
         ]
     },
     {

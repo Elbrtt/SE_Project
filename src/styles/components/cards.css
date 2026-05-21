@@ -232,7 +232,6 @@
 }
 
 .download-btn {
-    background: linear-gradient(180deg, var(--sys-color-download) 0%, var(--sys-color-download-dark) 100%);
     color: var(--sys-color-text-primary);
     border: none;
     padding: 8px 16px;
@@ -248,7 +247,7 @@
 }
 
 .play-btn {
-    background: linear-gradient(to bottom, var(--sys-color-deal) 0%, var(--sys-color-deal-dark) 100%);
+    background: var(--sys-color-deal);
     color: var(--sys-color-text-primary);
     border: none;
     padding: 8px 16px;
@@ -314,7 +313,7 @@
 /* Friend Card */
 .friend-card {
     display: flex;
-    align-items: center;
+    flex-direction: row;
     gap: var(--sys-spacing-md);
     padding: var(--sys-spacing-md);
     border-radius: var(--sys-radius-card);
@@ -341,7 +340,7 @@
 }
 
 .status-dot {
-    position: absolute;
+    position: ;
     bottom: calc(var(--ref-spacing-4) * 0.5);
     right: calc(var(--ref-spacing-4) * 0.5);
     width: var(--ref-spacing-12);
@@ -364,7 +363,7 @@
 }
 
 .friend-status {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--sys-color-text-secondary);
 }
 
