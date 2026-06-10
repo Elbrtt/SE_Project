@@ -94,7 +94,7 @@ import { tooltipProps } from './ui/tooltip.js';
                         variant: btnVariant,
                         icon: `<i data-lucide="${btnIcon}" class="${status === 'downloading' ? 'animate-spin' : ''}"></i>`,
                         extraClasses: `own-btn ${isDownloading ? 'disabled' : ''}`,
-                        onClick: isDownloading ? '' : `${status === 'installed' ? `window.notificationService.showNotification('Launching ${game.title}...')` : `window.uiEngine.downloadGame('${game.id}', '${game.title}')`}`
+                        onClick: isDownloading ? '' : `${status === 'installed' ? `event.stopPropagation(); window.libraryEngine.playGame('${game.title}')` : `window.uiEngine.downloadGame('${game.id}', '${game.title}')`}`
                     })}
                 </div>
             `;

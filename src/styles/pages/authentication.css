@@ -1,0 +1,236 @@
+/* ===== FALLBACK DESIGN SYSTEM TOKENS (Sourced from home.css) ===== */
+:root {
+    --sys-spacing-xl: 2rem;
+    --sys-spacing-lg: 1.5rem;
+    --sys-spacing-md: 1rem;
+    --sys-spacing-sm: 0.75rem;
+    --sys-spacing-xs: 0.5rem;
+    
+    --sys-color-bg-secondary: #1e293b;
+    --sys-color-bg-alpha-high: rgba(15, 23, 42, 0.95);
+    --sys-color-text-primary: #f8fafc;
+    --sys-color-text-secondary: #cbd5e1;
+    --sys-color-text-muted: #64748b;
+    
+    --sys-color-accent-soft: #5865f2;
+    --sys-color-border-soft: rgba(255, 255, 255, 0.1);
+    
+    --sys-radius-card: 12px;
+    --sys-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --sys-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    --sys-shadow-accent: 0 0 15px rgba(88, 101, 242, 0.2);
+    
+    --anim-duration-standard: 0.3s;
+    --anim-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --sys-color-danger: #f85149;
+    --sys-color-success: #2ea44f;
+    --ref-font-family-secondary: sans-serif;
+}
+
+/* ===== TOP BAR (WINDOW CONTROLS) ===== */
+.top-bar {
+    position: fixed; /* Dipasang fixed agar tetap berada di paling atas window Electron */
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    width: 100%;
+    background-color: var(--sys-color-bg-primary, #000000);
+    justify-content: end;
+    -webkit-app-region: drag;
+    gap: var(--sys-spacing-xs);
+    border-bottom: 1px solid var(--sys-color-border-soft);
+}
+
+.min-button, .win-button, .exit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--ref-spacing-4, 4px) * 1.5) calc(var(--ref-spacing-4, 4px) * 3);
+    border-style: none;
+    color: var(--sys-color-text-primary);
+    background-color: transparent;
+    -webkit-app-region: no-drag;
+    cursor: pointer;
+    transition: background-color var(--anim-duration-snappy, 0.15s);
+}
+
+.min-img, .win-img, .exit-img {
+    width: var(--ref-spacing-12, 12px);
+    height: var(--ref-spacing-12, 12px);
+    display: block;
+}
+
+.min-button:hover, .win-button:hover {
+    background-color: var(--color-btn-hover-gray, rgba(255, 255, 255, 0.1));
+}
+
+.exit-button:hover {
+    background-color: var(--color-btn-danger, #e81123);
+}
+
+
+/* ===== LOGIN PAGE STYLES ===== */
+body {
+    margin: 0;
+    padding: 0;
+    padding-top: 38px; /* Memberikan padding yang pas agar form login tidak tertimpa top-bar */
+    font-family: var(--ref-font-family-secondary), system-ui, sans-serif;
+    background-color: #0f172a;
+    color: var(--sys-color-text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: var(--sys-spacing-md);
+}
+
+.login-card {
+    border: 1px solid var(--sys-color-border-soft);
+    background: linear-gradient(180deg, var(--sys-color-bg-secondary) 0%, var(--sys-color-bg-alpha-high) 100%);
+    border-radius: var(--sys-radius-card);
+    padding: var(--sys-spacing-xl);
+    box-shadow: var(--sys-shadow-md);
+    transition: transform var(--anim-duration-standard) var(--anim-easing-standard),
+                box-shadow var(--anim-duration-standard) var(--anim-easing-standard),
+                border-color var(--anim-duration-standard) var(--anim-easing-standard);
+}
+
+.login-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sys-shadow-lg), var(--sys-shadow-accent);
+    border-color: var(--sys-color-accent-soft);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: var(--sys-spacing-xl);
+}
+
+.login-logo {
+    display: block;
+    margin: 0 auto var(--sys-spacing-md) auto;
+    max-width: 100px;
+    height: auto;
+    filter: drop-shadow(0 0 8px rgba(88, 101, 242, 0.4));
+}
+
+.login-header h1 {
+    font-size: 2rem;
+    margin: 0 0 var(--sys-spacing-xs) 0;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.login-header p {
+    color: var(--sys-color-text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sys-spacing-lg);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sys-spacing-xs);
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--sys-color-text-secondary);
+}
+
+.input-group input {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--sys-color-border-soft);
+    border-radius: 6px;
+    padding: var(--sys-spacing-md);
+    color: var(--sys-color-text-primary);
+    font-size: 0.95rem;
+    transition: border-color var(--anim-duration-standard) var(--anim-easing-standard);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--sys-color-accent-soft);
+}
+
+.login-actions {
+    margin-top: var(--sys-spacing-sm);
+}
+
+.btn-login {
+    width: 100%;
+    padding: var(--sys-spacing-md);
+    background-color: var(--sys-color-accent-soft);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity var(--anim-duration-standard) var(--anim-easing-standard),
+                transform var(--anim-duration-standard) var(--anim-easing-standard);
+}
+
+.btn-login:hover {
+    opacity: 0.9;
+    transform: scale(1.01);
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: var(--sys-spacing-md);
+    font-size: 0.85rem;
+    color: var(--sys-color-text-secondary);
+}
+
+#toggleBtn {
+    color: var(--sys-color-accent-soft);
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+#toggleBtn:hover {
+    opacity: 0.8;
+}
+
+/* ===== BADGE SYSTEM ===== */
+.nb-badge {
+    padding: var(--sys-spacing-sm) var(--sys-spacing-md);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--sys-spacing-md);
+}
+
+.nb-badge-danger {
+    background-color: var(--sys-color-danger);
+    color: white;
+    box-shadow: 0 0 12px rgba(248, 81, 73, 0.25);
+}
+
+.nb-badge-success {
+    background-color: var(--sys-color-success);
+    color: white;
+    box-shadow: 0 0 12px rgba(46, 164, 79, 0.25);
+}
+
+.hidden {
+    display: none !important;
+}

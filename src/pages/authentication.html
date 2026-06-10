@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal - Oasis</title>
+    <link rel="stylesheet" href="../styles/pages/authentication.css">
+</head>
+<body>
+    <div class="top-bar">
+        <button class="min-button">
+            <img src="../assets/minimize.png" alt="" class="min-img">
+        </button>
+        <button class="win-button">
+            <img src="../assets/restore.png" alt="" class="win-img">
+        </button>
+        <button class="exit-button">
+            <img src="../assets/exit-2.png" alt="" class="exit-img">
+        </button>
+    </div>
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <img src="../assets/se-logo.png" alt="Oasis" class="login-logo">
+                <h1 id="formTitle">Log in</h1>
+                <p id="formSubtitle">Please sign in to your account to continue</p>
+            </div>
+            
+            <div id="authAlert" class="nb-badge hidden"></div>
+
+            <form id="authForm" class="login-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter username..." required>
+                </div>
+                
+                <div class="input-group hidden" id="emailGroup">
+                    <label for="email">Email Address</label>
+                    <input type="text" id="email" placeholder="example@domain.com">
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="login-actions">
+                    <button type="submit" id="submitBtn" class="btn-login">Sign In</button>
+                </div>
+            </form>
+
+            <div class="form-footer">
+                <p id="toggleText">Don't have an account? <span id="toggleBtn" onclick="toggleMode()">Register now</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../services/authetication.js"></script>
+</body>
+</html>

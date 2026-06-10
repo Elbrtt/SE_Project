@@ -15,7 +15,7 @@ function createWindow() {
     }
   })
 
-  win.loadFile(path.join(__dirname, 'src/pages/index.html'))
+  win.loadFile(path.join(__dirname, 'src/pages/authentication.html'))
 
   // Handle window controls
   ipcMain.on('window-min', () => win.minimize())

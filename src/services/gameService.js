@@ -120,6 +120,7 @@ export const games = [
             { source: 'Steam', price: '$1.99', discount: 80 }
         ]
     }
+    
 ];
 
 export const deals = [
