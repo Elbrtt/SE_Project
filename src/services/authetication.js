@@ -1,16 +1,5 @@
-// Form state tracking (true = Login, false = Register)
 let isLoginMode = true;
 
-// Temporary volatile array database mapping users dynamically
-const userDatabase = [
-    {
-        username: "admin",
-        email: "admin@oasis.com",
-        password: "admin123"
-    }
-];
-
-// Handles clean interface mutation between Authentication and Registration architectures
 function toggleMode() {
     isLoginMode = !isLoginMode;
     
@@ -22,7 +11,6 @@ function toggleMode() {
     const emailGroup = document.getElementById('emailGroup');
     const emailInput = document.getElementById('email');
     
-    // Purge previous validation artifacts during structural context mutations
     alertBox.className = "nb-badge hidden";
 
     if (isLoginMode) {
@@ -44,9 +32,9 @@ function toggleMode() {
     }
 }
 
-// Intercept form submission and process targeted functional routines
-document.getElementById('authForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
+document.getElementById('authForm').addEventListener('submit', async function(event) {
+
+    event.preventDefault();
 
     const usernameInput = document.getElementById('username').value.trim();
     const emailInput = document.getElementById('email').value.trim();
@@ -55,73 +43,79 @@ document.getElementById('authForm').addEventListener('submit', function(event) {
 
     alertBox.className = "nb-badge hidden";
 
-    if (!isLoginMode) {
-        // === REGISTRATION FLOW ===
-        
-        // 1. Email structural verification
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(emailInput)) {
-            alertBox.textContent = "Invalid email format (must include '@' and a domain suffix).";
-            alertBox.className = "nb-badge nb-badge-danger";
-            return;
-        }
+    try {
 
-        // 2. Collision checking inside active user storage array
-        const isUsernameExist = userDatabase.some(user => user.username.toLowerCase() === usernameInput.toLowerCase());
-        if (isUsernameExist) {
-            alertBox.textContent = "Username is already taken! Please choose another one.";
-            alertBox.className = "nb-badge nb-badge-danger";
-            return;
-        }
+        if (!isLoginMode) {
 
-        // 3. Mutate array database with new credentials profile
-        userDatabase.push({
-            username: usernameInput,
-            email: emailInput,
-            password: passwordInput
-        });
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        alertBox.textContent = "Registration successful! You can now log in with your credentials.";
-        alertBox.className = "nb-badge nb-badge-success";
-        
-        // Return interface to Authentication mode view state
-        setTimeout(() => {
-            toggleMode();
-            // Automatically map newly registered handle into user input
-            document.getElementById('username').value = usernameInput;
-            document.getElementById('password').value = "";
-        }, 1500);
+            if (!emailRegex.test(emailInput)) {
+                alertBox.textContent = "Invalid email format (must include '@' and a domain suffix).";
+                alertBox.className = "nb-badge nb-badge-danger";
+                return;
+            }
 
-    } else {
-        // === AUTHENTICATION SIGN IN FLOW ===
-        
-        // Query user database mapping for valid property matching criteria
-        const validUser = userDatabase.find(user => 
-            user.username.toLowerCase() === usernameInput.toLowerCase() && 
-            user.password === passwordInput
-        );
+            const result = await window.electron.auth.register({
+                username: usernameInput,
+                email: emailInput,
+                password: passwordInput
+            });
 
-        if (validUser) {
-            alertBox.textContent = `Access granted! Welcome back, ${validUser.username}. Redirecting...`;
+            if (!result.success) {
+                alertBox.textContent = result.message || "Registration failed.";
+                alertBox.className = "nb-badge nb-badge-danger";
+                return;
+            }
+
+            alertBox.textContent = "Registration successful! You can now log in with your credentials.";
             alertBox.className = "nb-badge nb-badge-success";
-            
+
+            const loginCard = document.querySelector('.login-card');
+            loginCard.style.transition = 'opacity 1.2s ease';
+            void loginCard.offsetHeight;
+            loginCard.style.opacity = '0';
+
             setTimeout(() => {
-                window.location.href = '../pages/index.html'; 
-            }, 1500);
+                toggleMode();
+                document.getElementById('username').value = usernameInput;
+                document.getElementById('password').value = "";
+                void loginCard.offsetHeight;
+                loginCard.style.opacity = '1';
+            }, 1200);
+
         } else {
-            alertBox.textContent = "Invalid username or password configuration.";
-            alertBox.className = "nb-badge nb-badge-danger";
+
+            const result = await window.electron.auth.login({
+                username: usernameInput,
+                password: passwordInput
+            });
+
+            if (result.success) {
+                alertBox.textContent = `Access granted! Welcome back, ${result.username}. Redirecting...`;
+                alertBox.className = "nb-badge nb-badge-success";
+
+                setTimeout(() => {
+                    window.location.href = "../pages/index.html";
+                }, 1500);
+
+            } else {
+                alertBox.textContent = "Invalid username or password.";
+                alertBox.className = "nb-badge nb-badge-danger";
+            }
         }
+
+    } catch (error) {
+        console.error(error);
+        alertBox.textContent = "An unexpected error occurred.";
+        alertBox.className = "nb-badge nb-badge-danger";
     }
 });
 
 (function initWindowControls() {
-    // Fungsi eksekusi utama
     const setupListeners = () => {
         if (window.electron && window.electron.windowControls) {
             const { minimize, maximize, close } = window.electron.windowControls;
 
-            // Selector menggunakan class bawaan dari HTML asli kamu
             const minBtn = document.querySelector('.min-button');
             const maxBtn = document.querySelector('.win-button');
             const closeBtn = document.querySelector('.exit-button');
@@ -142,7 +136,6 @@ document.getElementById('authForm').addEventListener('submit', function(event) {
         }
     };
 
-    // Jalankan langsung jika DOM sudah siap, atau tunggu jika belum
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', setupListeners);
     } else {

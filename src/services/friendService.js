@@ -1,4 +1,3 @@
-// Friend data service
 const friends = [
     {
         id: 'friend-1',
@@ -36,7 +35,6 @@ export function getAllFriends() {
     return friends;
 }
 
-// Keep global reference for legacy components if needed for now
 window.friendService = {
     getAllFriends
 };
