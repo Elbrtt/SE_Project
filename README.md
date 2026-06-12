@@ -1,6 +1,3 @@
-<p align="center">
-  <img alt="Oasis" title="Oasis" src="https://ik.imagekit.io/xtqs8k6di/3.png" width="200">
-</p>
 
 <p align="center">
   Unified Social Gaming Platform: Discord and Steam Hybrid
@@ -8,7 +5,7 @@
 
 ---
 
-# Oasis: High-Performance Gaming Social Hub 🎮
+# Oasis: All Platform Gaming Social Hub 🎮
 
 Oasis is a specialized desktop application designed to bridge the gap between social communication platforms and game library management systems. By integrating **Discord-style** real-time interaction with **Steam-style** game tracking, Oasis provides a singular, lightweight environment for gamers to manage their digital assets and social circles.
 
