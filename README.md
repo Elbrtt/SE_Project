@@ -172,19 +172,9 @@ Local Storage
 ## Core Technologies
 
 - Electron
-- React
+- HTML
 - JavaScript ES6+
 - CSS
-
-## APIs & Libraries
-
-- RAWG API
-- Lucide Icons
-
-## Testing
-
-- Jest
-- Playwright
 
 ---
 
