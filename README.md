@@ -56,11 +56,7 @@ Oasis provides a centralized interface that combines essential gaming utilities 
 - View game metadata
 - Discover trending games
 - Find free-to-play and discounted games
-
-Powered by:
-
-- RAWG API
-
+  
 ---
 
 ## 👤 Authentication System
