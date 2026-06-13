@@ -23,7 +23,7 @@ Developed for the **Semester 4 Software Engineering AOL Project** at Binus Unive
 
 ---
 
-## 🎯 Problem
+# 🎯 Problem
 
 Modern gamers often need multiple applications:
 
@@ -70,8 +70,6 @@ Powered by:
 - Session handling
 - User management
 
-User data is stored locally for application usage.
-
 ---
 
 ## 💬 Social Hub
@@ -100,6 +98,48 @@ Stored data includes:
 - User information
 - Library data
 - Application state
+
+---
+
+# 🖥️ Application Preview
+
+## Login / Register Page
+
+<p align="center">
+  <img src="https://ik.imagekit.io/xtqs8k6di/3.png" width="700">
+</p>
+
+---
+
+## Game Store
+
+<p align="center">
+  <img src="https://ik.imagekit.io/xtqs8k6di/4.png" width="700">
+</p>
+
+---
+
+## Game Details
+
+<p align="center">
+  <img src="https://ik.imagekit.io/xtqs8k6di/5.png" width="700">
+</p>
+
+---
+
+## Game Library
+
+<p align="center">
+  <img src="https://ik.imagekit.io/xtqs8k6di/6.png" width="700">
+</p>
+
+---
+
+## Social Hub
+
+<p align="center">
+  <img src="https://ik.imagekit.io/xtqs8k6di/7.png" width="700">
+</p>
 
 ---
 
@@ -187,8 +227,6 @@ npm start
 ---
 
 # 📅 Future Development
-
-Planned improvements:
 
 - Backend database integration
 - Online authentication
