@@ -13,7 +13,7 @@ Developed for the **Semester 4 Software Engineering AOL Project** at Binus Unive
 - **Name**: Oasis
 - **Type**: Gaming Social Hub Desktop Application
 - **Platform**: Desktop Application
-- **Framework**: Electron + React
+- **Framework**: Electron
 - **Project Focus**:
   - Game library management
   - Game discovery
@@ -149,7 +149,7 @@ Oasis uses a layered Electron architecture:
 
 ```text
 Renderer Layer
-(React + HTML + CSS)
+(HTML + CSS)
         |
 Application Logic
 (Services)
