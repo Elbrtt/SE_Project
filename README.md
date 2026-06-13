@@ -225,6 +225,6 @@ npm start
 
 - [Elbrt](https://github.com/Elbrtt)
 - [Zhvny](https://github.com/Zhvny)
-- [Y-Eivan](ttps://github.com/Y-Eivan)
+- [Y-Eivan](https://github.com/Y-Eivan)
 - [Venscenos34](https://github.com/Venscenos34)
 - [DavinJuandika](https://github.com/davinjuandika)
